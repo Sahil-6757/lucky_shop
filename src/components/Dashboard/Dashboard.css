@@ -1,0 +1,226 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.left-panel {
+  top: 0;
+  float: left;
+  position: relative;
+  border-radius: 8px;
+  height: 100%;
+  background-color: rgb(177, 255, 161);
+}
+
+.left-panel ul {
+  list-style: none;
+  font-size: 1.4em;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+ul .link {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-left: -12px;
+}
+
+.shop-name {
+  color: #34495e;
+}
+
+.buttonElement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link:hover {
+  color: rgb(248, 22, 79);
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+.fa-trash{
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.item-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-form {
+  width: 43rem;
+}
+
+.fa-bars {
+  font-size: 2rem;
+}
+
+.fa-bars:hover {
+  cursor: pointer;
+  color: rgb(248, 22, 79);
+}
+
+.transaction-details {
+  position: absolute;
+  margin-left: 23rem;
+}
+
+.fa-icon {
+  margin-right: 12px;
+}
+
+.table-row :hover {
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+}
+
+.container DataGrid {
+  margin-left: auto;
+}
+.item-container:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+  z-index: 1;
+}
+.rightBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 9rem;
+  right: 4rem;
+  width: 20rem;
+}
+
+.Datagrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.table-container {
+  height: 23rem;
+  overflow: scroll;
+  width: max-content;
+}
+
+.table-head {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1080px) {
+  .Dnavbar-shopping-cart {
+    margin-left: -0.1rem !important;
+  }
+ 
+  .contact-table {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .order-table {
+    margin-left: 3rem !important;
+    width: 90% !important;
+    overflow: scroll !important;
+    font-size: 12px;
+  }
+  .left-panel {
+    width: 3.4rem;
+    height: 3.4rem;
+    font-size: 12px;
+    bottom: 0;
+    position: absolute;
+    background-color: transparent;
+  }
+  .item-container {
+    margin-bottom: 1rem;
+    margin-left: 4rem;
+  }
+
+  .login-btn {
+    margin-top: -3rem;
+  }
+
+  .left-panel ul {
+    .rightBar {
+      display: none;
+    }
+
+    .left-panel ul {
+      display: flex;
+      bottom: 0;
+      left: 15px;
+      position: fixed;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      border-radius: 23px;
+      background-color: rgb(208 218 206);
+    }
+
+    .item-page {
+      font-size: 12px;
+      padding: 12px;
+    }
+
+    .table {
+      width: 28rem;
+      margin: 0;
+      margin-bottom: 5rem;
+    }
+
+    .col {
+      padding: -0.5rem 0.5rem;
+    }
+
+    .Navbar-login {
+      position: absolute;
+      margin-left: 18rem;
+      margin-top: -2rem;
+    }
+
+    .fa-bars {
+      margin-right: 2rem;
+      display: none;
+    }
+
+    .nav-title {
+      display: none;
+    }
+  }
+
+  @keyframes shiftNav {
+    0% {
+      left: 0px;
+    }
+
+    100% {
+      left: 3rem;
+    }
+  }
+
+  .dataGrid {
+    margin-right: -9rem !important;
+  }
+}
