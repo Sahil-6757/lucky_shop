@@ -29,8 +29,6 @@ function Crousel() {
     });
   }
 
-
-
   try {
     useEffect(() => {
       const storedCart = JSON.parse(localStorage.getItem("Items")) || [];
@@ -94,42 +92,7 @@ function Crousel() {
     }
   };
 
-  const submit = (e) => {
-    e.preventDefault();
-    if (!(formData.email && formData.message && formData.name)) {
-      toast.warn("Fields are empty", {
-        autoClose: 1000,
-        pauseOnFocusLoss: false,
-      });
-    } else {
-      axios
-        .post("https://lucky-shop-backend.onrender.com/contact", formData)
-        .then((resp) => {
-          if (resp.data.message) {
-            toast.success("Success", {
-              position: "top-right",
-              autoClose: 1000,
-            });
-            getData();
-            clearForm();
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("message").value = "";
-          } else {
-            toast.error("Error", {
-              position: "top-right",
-              autoClose: 1000,
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error(error, {
-            theme: "light",
-          });
-        });
-    }
-  };
+
   return (
     <>
       <div id="carouselExampleCaptions" className="carousel slide">
@@ -263,9 +226,6 @@ function Crousel() {
           )}
         </div>
       </div>
-
-
-   
     </>
   );
 }

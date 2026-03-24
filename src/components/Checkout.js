@@ -71,6 +71,7 @@ Product: ${formData.order.map((item) => `${item.name} (x${item.count})`).join(",
 Quantity: ${formData.order.reduce((total, item) => total + item.count, 0)}
 Total: ${formData.total}
 Address: ${formData.address}
+If Shipping Address is longer than 2KM then Additional Charges will be applied. Please contact us for more details.
   `;
 
             const url = `https://wa.me/${8983306757}?text=${encodeURIComponent(orderDetails)}`;

@@ -80,7 +80,7 @@ function Cart() {
                         className="btn btn-danger"
                         onClick={() => removeBtn(index)}
                       >
-                        Remove
+                        <i class="fa-solid fa-trash"></i>
                       </button>
                   </div>
                 );

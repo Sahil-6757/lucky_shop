@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 import { useRef, useState } from "react";
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  
+
   const [menuOpen, setMenuOpen] = useState(false);
-const dropdownRef = useRef();
+  const dropdownRef = useRef();
   const { login, setLogin } = useContext(AuthContext);
   const { count, setCount } = useContext(AuthContext);
   // function countItem() {
@@ -26,23 +26,23 @@ const dropdownRef = useRef();
   };
 
   const handleBars = () => {
-  setMenuOpen(!menuOpen);
-};
+    setMenuOpen(!menuOpen);
+  };
 
   useEffect(() => {
     try {
-        const handleClickOutside = (e) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-      setDropdownOpen(false);
-    }
-  };
-  document.addEventListener("mousedown", handleClickOutside);
+      const handleClickOutside = (e) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+          setDropdownOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
       let userLogin = localStorage.getItem("Login");
       console.log(userLogin);
-    setLogin(userLogin === "true");
+      setLogin(userLogin === "true");
       console.log(userLogin);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     } catch (error) {}
   }, []);
 
@@ -89,32 +89,28 @@ const dropdownRef = useRef();
         </a>
 
         <div className="profile-dropdown" ref={dropdownRef}>
-  {login ? (
-    <>
-     
+          {login ? (
+            <>
+              {dropdownOpen && (
+                <div className="dropdown-menu">
+                  <Link to="/dashboard" className="dropdown-item">
+                    Dashboard
+                  </Link>
 
-      {dropdownOpen && (
-        <div className="dropdown-menu">
-          <Link to="/dashboard" className="dropdown-item">
-            Dashboard
-          </Link>
+                  <Link to="/profile" className="dropdown-item">
+                    My Profile
+                  </Link>
 
-          <Link to="/profile" className="dropdown-item">
-            My Profile
-          </Link>
-
-          <div className="dropdown-item" onClick={handleLogout}>
-            Logout
-          </div>
+                  <div className="dropdown-item" onClick={handleLogout}>
+                    Logout
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            ""
+          )}
         </div>
-      )}
-    </>
-  ) : (
-    <Link to="login" className="btn login-btn mx-3">
-      <h5>Login</h5>
-    </Link>
-  )}
-</div>
 
         <div className="Navbar-login">
           <Link
@@ -133,26 +129,36 @@ const dropdownRef = useRef();
           )}
           <i className="fa-solid fa-bars" onClick={handleBars}></i>
           {menuOpen && (
-  <div className="mobile-menu">
-    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-    <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
-    <Link to="/contactus" onClick={() => setMenuOpen(false)}>Contact</Link>
-    <Link to="/product" onClick={() => setMenuOpen(false)}>Product</Link>
-    <Link to="/cart" onClick={() => setMenuOpen(false)}>Cart</Link>
+            <div className="mobile-menu">
+              <Link to="/" onClick={() => setMenuOpen(false)}>
+                Home
+              </Link>
+              <Link to="/aboutus" onClick={() => setMenuOpen(false)}>
+                About
+              </Link>
+              <Link to="/contactus" onClick={() => setMenuOpen(false)}>
+                Contact
+              </Link>
+              <Link to="/product" onClick={() => setMenuOpen(false)}>
+                Product
+              </Link>
+              <Link to="/cart" onClick={() => setMenuOpen(false)}>
+                Cart
+              </Link>
 
-    {login && (
-      <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
-        Dashboard
-      </Link>
-    )}
+              {login && (
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                  Dashboard
+                </Link>
+              )}
 
-    {login ? (
-      <div onClick={handleLogout}>Logout</div>
-    ) : (
-      <Link to="/login">Login</Link>
-    )}
-  </div>
-)}
+              {login ? (
+                <div onClick={handleLogout}>Logout</div>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
+            </div>
+          )}
         </div>
       </div>
       {/* <nav className="navbar main-navbar  navbar-expand-lg bg-body-tertiary">
