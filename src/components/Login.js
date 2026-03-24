@@ -3,7 +3,9 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
+import siteIcon from "../assets/siteIcon.jpg";
 import "../App.css";
+
 function Login() {
   const { login, setLogin } = useContext(AuthContext);
 
@@ -67,7 +69,15 @@ function Login() {
   return (
     <>
       <div className="login-form container">
-        <form action="" method="post">
+        <div className="site-image">
+          <img
+            src={siteIcon}
+            alt="Login"
+              style={{ width: "80%", height: "80%" }}
+          />
+        </div>
+        <div className="login">
+      <form action="" method="post">
           <div className="login">
             <input
               type="email"
@@ -96,16 +106,18 @@ function Login() {
               >
               Login
             </button>
-            <Link
+            {/* <Link
               to="/register"
               style={{ backgroundColor: "#D7DBD4" }}
               className="register-btn btn  mx-3"
               >
               Register
-            </Link>
+            </Link> */}
               </div>
           </div>
         </form>
+        </div>
+  
       </div>
     </>
   );

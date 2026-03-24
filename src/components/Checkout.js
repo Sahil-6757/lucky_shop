@@ -12,17 +12,17 @@ function Checkout() {
   const [result, setresult] = useState();
 
   const [formData, setFormData] = useState({
-   name: '',
+    name: "",
     time: new Date().toLocaleString(),
-    email: '',
-    mobile: '',
-    address: '',
+    email: "",
+    mobile: "",
+    address: "",
     order: [],
-    city: '',
-    postalCode: '',
-    order_id: '',
-    payement_id: 'Cash on Delivery',
-    total: '',
+    city: "",
+    postalCode: "",
+    order_id: "",
+    payement_id: "Cash on Delivery",
+    total: "",
   });
 
   const handleChange = (e) => {
@@ -50,7 +50,6 @@ function Checkout() {
         autoClose: 1000,
       });
     } else {
-
       axios
         .post("https://lucky-shop-backend.onrender.com/order", formData)
         .then((resp) => {
@@ -63,7 +62,20 @@ function Checkout() {
             localStorage.setItem("Items", "[]");
             let countItem = JSON.parse(localStorage.getItem("Items"));
             setCount(countItem.length);
-            navigation("/");
+            // navigation("/");
+
+            const orderDetails = `
+🛒 New Order
+Name: ${formData.name}
+Product: ${formData.order.map((item) => `${item.name} (x${item.count})`).join(", ")}
+Quantity: ${formData.order.reduce((total, item) => total + item.count, 0)}
+Total: ${formData.total}
+Address: ${formData.address}
+  `;
+
+            const url = `https://wa.me/${8983306757}?text=${encodeURIComponent(orderDetails)}`;
+
+            window.open(url, "_blank");
           }
         });
     }
@@ -137,8 +149,8 @@ function Checkout() {
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{value.name}</td>
-                  <td style={{width:"50%"}}>{value.description}</td>
-                  <td >{value.count}</td>
+                  <td style={{ width: "50%" }}>{value.description}</td>
+                  <td>{value.count}</td>
                   <td>{value.rate}</td>
                 </tr>
               );

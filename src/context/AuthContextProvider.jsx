@@ -2,8 +2,7 @@ import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 
 export const AuthContextProvider = (props) => {
-  const [login, setLogin] = useState({
-  });
+  const [login, setLogin] = useState(false);
   const [count, setCount] = useState(0);
   const [itemCounter, setItemCounter] = useState(0);
 

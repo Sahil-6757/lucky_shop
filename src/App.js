@@ -11,14 +11,17 @@ import DNavbar from "./components/Dashboard/DNavbar";
 import Dhome from "./components/Dashboard/Dhome";
 import Ditem from "./components/Dashboard/Ditem";
 import Dorder from "./components/Dashboard/Dorder";
+import Contactus from "./Pages/Contactus";
 import Dcontact from "./components/Dashboard/Dcontact";
 import Duser from "./components/Dashboard/Duser";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Dsetting from "./components/Dashboard/Dsetting";
-import { useEffect,  } from "react";
+import { useEffect } from "react";
 import { AuthContextProvider } from "./context/AuthContextProvider";
+import Aboutus from "./Pages/Aboutus";
+import Footer from "./components/Footer";
 function App() {
   useEffect(() => {
     const token = localStorage.getItem("login");
@@ -28,12 +31,14 @@ function App() {
 
   return (
     <>
-<AuthContextProvider>
-      <ToastContainer />
+      <AuthContextProvider>
+        <ToastContainer />
         <Navbar />
         <Routes>
           <Route Component={Crousel} index="/" />
           <Route Component={Login} path="/login" />
+          <Route Component={Aboutus} path="/aboutus" />
+          <Route Component={Contactus} path="/Contactus" />
           <Route Component={Register} path="/register" />
           <Route Component={Cart} path="/cart" />
           <Route Component={Checkout} path="/checkout" />
@@ -46,7 +51,8 @@ function App() {
             <Route Component={Dsetting} path="dSetting" />
           </Route>
         </Routes>
-</AuthContextProvider>
+        <Footer/>
+      </AuthContextProvider>
     </>
   );
 }

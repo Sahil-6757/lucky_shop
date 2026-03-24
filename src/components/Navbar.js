@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
-
+import { useRef, useState } from "react";
 function Navbar() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+  const [menuOpen, setMenuOpen] = useState(false);
+const dropdownRef = useRef();
   const { login, setLogin } = useContext(AuthContext);
   const { count, setCount } = useContext(AuthContext);
   // function countItem() {
@@ -18,50 +22,137 @@ function Navbar() {
       autoClose: 1000,
     });
     localStorage.setItem("Login", false);
-    setLogin(false)
+    setLogin(false);
   };
+
+  const handleBars = () => {
+  setMenuOpen(!menuOpen);
+};
 
   useEffect(() => {
     try {
+        const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setDropdownOpen(false);
+    }
+  };
+  document.addEventListener("mousedown", handleClickOutside);
       let userLogin = localStorage.getItem("Login");
-      setLogin(JSON.parse(userLogin));
-      console.log(login)
+      console.log(userLogin);
+    setLogin(userLogin === "true");
+      console.log(userLogin);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+
     } catch (error) {}
   }, []);
 
   return (
     <>
       <div className="navbar">
-        <div className="container">
-          <a className="navbar-brand text-success" href="/">
-            <Link to={"/"} className="nav-link active luckyFruits" aria-current="page">
-              Lucky Fruits
-            </Link>
-          </a>
-          {
-            login ? (
-              <Link to={"Dashboard"} className="nav-link active dashboard" aria-current="page">
-                Dashboard
-              </Link>
-            ) : null
-          }
+        <a className="site-Title text-success" href="/">
+          <Link
+            to={"/"}
+            className="nav-link active luckyFruits"
+            aria-current="page"
+          >
+            Lucky Fruits
+          </Link>
+        </a>
 
-          <div className="Navbar-login">
-            <Link
-              to="cart"
-              className="fa-solid fa-cart-shopping cart-icon align-center"
-            ></Link>
-            <p className="cart-count">{count == null ? 0 : count}</p>
-            {login ? (
-              <Link to="login" className="btn login-btn mx-3">
-                <h5 onClick={handleLogout}>Logout</h5>
-              </Link>
-            ) : (
-              <Link to="login" className="btn login-btn mx-3">
-                <h5>Login</h5>
-              </Link>
-            )}
+        <a className="navbar-brand text-success" href="/">
+          <Link
+            to={"/aboutus"}
+            className="nav-link active aboutus"
+            aria-current="page"
+          >
+            About us
+          </Link>
+        </a>
+        <a className="navbar-brand text-success" href="/">
+          <Link
+            to={"/contactus"}
+            className="nav-link active aboutus"
+            aria-current="page"
+          >
+            Contact us
+          </Link>
+        </a>
+
+        <a className="navbar-brand text-success" href="/">
+          <Link
+            to={"/aboutus"}
+            className="nav-link active aboutus"
+            aria-current="page"
+          >
+            Product
+          </Link>
+        </a>
+
+        <div className="profile-dropdown" ref={dropdownRef}>
+  {login ? (
+    <>
+     
+
+      {dropdownOpen && (
+        <div className="dropdown-menu">
+          <Link to="/dashboard" className="dropdown-item">
+            Dashboard
+          </Link>
+
+          <Link to="/profile" className="dropdown-item">
+            My Profile
+          </Link>
+
+          <div className="dropdown-item" onClick={handleLogout}>
+            Logout
           </div>
+        </div>
+      )}
+    </>
+  ) : (
+    <Link to="login" className="btn login-btn mx-3">
+      <h5>Login</h5>
+    </Link>
+  )}
+</div>
+
+        <div className="Navbar-login">
+          <Link
+            to="cart"
+            className="fa-solid fa-cart-shopping cart-icon align-center"
+          ></Link>
+          <p className="cart-count">{count == null ? 0 : count}</p>
+          {login ? (
+            <Link to="login" className="btn login-btn mx-3">
+              <h5 onClick={handleLogout}>Logout</h5>
+            </Link>
+          ) : (
+            <Link to="login" className="btn login-btn mx-3">
+              <h5>Login</h5>
+            </Link>
+          )}
+          <i className="fa-solid fa-bars" onClick={handleBars}></i>
+          {menuOpen && (
+  <div className="mobile-menu">
+    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+    <Link to="/aboutus" onClick={() => setMenuOpen(false)}>About</Link>
+    <Link to="/contactus" onClick={() => setMenuOpen(false)}>Contact</Link>
+    <Link to="/product" onClick={() => setMenuOpen(false)}>Product</Link>
+    <Link to="/cart" onClick={() => setMenuOpen(false)}>Cart</Link>
+
+    {login && (
+      <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+        Dashboard
+      </Link>
+    )}
+
+    {login ? (
+      <div onClick={handleLogout}>Logout</div>
+    ) : (
+      <Link to="/login">Login</Link>
+    )}
+  </div>
+)}
         </div>
       </div>
       {/* <nav className="navbar main-navbar  navbar-expand-lg bg-body-tertiary">
