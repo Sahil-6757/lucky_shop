@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import Crousel from "./components/Crousel";
 import { Route, Routes, Outlet } from "react-router-dom";
 import Login from "./components/Login";
-import { Auth0Provider } from "@auth0/auth0-react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Register";

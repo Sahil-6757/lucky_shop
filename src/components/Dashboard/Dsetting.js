@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./Dashboard.css";
-import Button from "@mui/material/Button";
 
 function Dsetting() {
   const [rows, setrows] = useState([]);

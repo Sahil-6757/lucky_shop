@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import siteIcon from "../assets/siteIcon.jpg";
 import { Link } from "react-router-dom";
@@ -12,7 +12,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 function Footer() {
-
   // ✅ Scroll button state
   const [showBtn, setShowBtn] = useState(false);
 
@@ -38,6 +37,9 @@ function Footer() {
     });
   };
 
+  const number = 9822516757;
+  const whatsappLink = `https://wa.me/${number}`;
+
   return (
     <div>
       <div className="container">
@@ -53,8 +55,8 @@ function Footer() {
                 Chicoo, Orange, Grapes, Pomegranate, etc
               </h6>
               <h6 className="text-center shop-name">
-                We are offering Home Delivery Service Excellent Quality of Fruits
-                are available
+                We are offering Home Delivery Service Excellent Quality of
+                Fruits are available
               </h6>
               <h5 className="text-center shop-name">
                 Address : Shop No.293, Basement, New.B.J. Market, Jalgaon
@@ -84,9 +86,7 @@ function Footer() {
 
         {/* ⭐ TESTIMONIAL SWIPER */}
         <div className="my-5">
-          <h3 className="text-center text-success mb-4">
-            Customer Reviews
-          </h3>
+          <h3 className="text-center text-success mb-4">Customer Reviews</h3>
 
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
@@ -138,8 +138,9 @@ function Footer() {
       </div>
 
       {/* WhatsApp Button */}
+
       <a
-        href="https://wa.me/919822516757"
+        href={whatsappLink}
         className="whatsapp-float"
         target="_blank"
         rel="noopener noreferrer"
@@ -165,9 +166,21 @@ function Footer() {
         <div className="two">
           <h3 style={{ textAlign: "center" }}>Short links</h3>
           <ul className="footer-links" style={{ textAlign: "center" }}>
-            <li><Link to="/aboutus" style={{ color: "white" }}>About Us</Link></li>
-            <li><Link to="/contactus" style={{ color: "white" }}>Contact Us</Link></li>
-            <li><Link to="/product" style={{ color: "white" }}>Products</Link></li>
+            <li>
+              <Link to="/aboutus" style={{ color: "white" }}>
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/contactus" style={{ color: "white" }}>
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/product" style={{ color: "white" }}>
+                Products
+              </Link>
+            </li>
           </ul>
         </div>
 

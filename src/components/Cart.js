@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import "../App.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -56,33 +56,31 @@ function Cart() {
             ) : (
               Items.map((value, index) => {
                 return (
-                  <div
-                    className="cart-items my-2"
-                    style={{
-                      boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                      padding: 10,
-                    }}
-                  >
-                      <img
-                        src={value.image}
-                        className="cart-image"
-                        alt="image"
-                      />
-                      <h4 className="px-2">{value.name}</h4>
-                      {/* <p className="px-2" >{value.description}</p> */}
-                      <div className="counter">
-                      <p className="counter-rate">{value.rate}</p>
-                      <button className="decrement" onClick={() => handleDecrement(index)}>-</button>
-                      <span className="count-value">{value.count}</span>
-                      <button className="increment" onClick={() => handleIncrement(index)}>+</button>
-                      </div>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => removeBtn(index)}
-                      >
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
-                  </div>
+             <div className="cart-items">
+  <div className="cart-left">
+    <img src={value.image} className="cart-image" alt="img" />
+
+    <div className="cart-info">
+      <h5>{value.name}</h5>
+      <p className="counter-rate">₹ {value.rate}</p>
+    </div>
+  </div>
+
+  <div className="cart-right">
+    <div className="counter">
+      <button onClick={() => handleDecrement(index)}>-</button>
+      <span>{value.count}</span>
+      <button onClick={() => handleIncrement(index)}>+</button>
+    </div>
+
+    <button
+      className="btn btn-danger remove-btn"
+      onClick={() => removeBtn(index)}
+    >
+      🗑
+    </button>
+  </div>
+</div>
                 );
               })
             )}

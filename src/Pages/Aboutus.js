@@ -1,4 +1,3 @@
-import React from "react";
 import "../App.css";
 import FruitsImage from "../assets/FruitsImage.png";
 import Coconut from "../assets/Coconut.png";
