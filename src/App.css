@@ -12,7 +12,101 @@
 .subContainer {
   display: flex;
   gap: 2rem;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* 👈 left side */
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  z-index: 1000;
+
+  display: flex;
   align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+.scroll-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #198754;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.scroll-top-btn:hover {
+  background: #145c32;
+}
+
+/* Make all cards equal height */
+.card {
+  height: 100%;
+}
+
+/* Fix description height */
+.description {
+  min-height: 90px; /* adjust if needed */
+}
+.fruit-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.3s;
+  cursor: pointer;
+  height: 100%;
+}
+
+.fruit-card:hover {
+  transform: translateY(-5px);
+}
+
+.fruit-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.fruit-body {
+  padding: 10px;
+}
+
+.description {
+  min-height: 60px;
+}
+/* Push price to same line */
+.item-rate {
+  margin-top: auto;
+  font-size: 18px;
+}
+.item-rate{
+  top: 28rem;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* Left & Right */
@@ -91,7 +185,6 @@
 @media (max-width: 768px) {
   .subContainer {
     flex-direction: column;
-    text-align: center;
   }
 
   .left,
@@ -219,6 +312,49 @@
   max-width: 200px;
   border-radius: 15px;
 }
+ .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    max-width: 320px;
+  }
+
+  .stars {
+    display: flex;
+    grid-gap: 0.125rem;
+    gap: 0.125rem;
+    color: rgb(238, 203, 8);
+  }
+
+  .star {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .infos {
+    margin-top: 1rem;
+  }
+
+  .date-time {
+    color: rgba(7, 63, 216, 1);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .description {
+    margin-top: 0.4rem;
+    line-height: 1.625;
+    color: rgba(107, 114, 128, 1);
+  }
+
+  .author {
+    margin-top: 1.3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgba(107, 114, 128, 1);
+  }
 
 /* Links */
 .footer-links {
@@ -309,6 +445,36 @@
   display: block;
   margin: 2rem auto;
   position: relative;
+}
+/* Card styling */
+.fruit-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.fruit-card:hover {
+  transform: scale(1.03);
+}
+
+/* Image */
+.fruit-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Body */
+.fruit-body {
+  padding: 10px;
+}
+
+/* Fix carousel spacing */
+.carousel-item {
+  padding: 10px 0;
 }
 
 @media only screen and (max-width: 768px) {

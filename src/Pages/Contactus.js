@@ -15,10 +15,29 @@ function Contactus() {
   });
 
   // ✅ handle input change
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+
+
+    // ✅ Only allow gmail emails
+  if (name === "email") {
+    if (value && !value.endsWith("@gmail.com")) {
+      // allow typing but block invalid full entry if needed
+    
+      setFormData({ ...formData, [name]: value });
+      return;
+    }
+  }
+
+  // ✅ Allow only letters and space
+  if (name === "name") {
+    if (!/^[A-Za-z\s]*$/.test(value)) {
+      return; // ❌ block numbers & special chars
+    }
+  }
+
+  setFormData({ ...formData, [name]: value });
+};
 
   // ✅ fetch contact data
   const getData = async () => {
@@ -57,33 +76,65 @@ function Contactus() {
 
   // ✅ submit form
   const submit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!(formData.email && formData.message && formData.name)) {
-      toast.warn("Fields are empty");
-      return;
-    }
+  if (!(formData.name && formData.email && formData.message)) {
+    toast.warn("Fields are empty",{
+      position: "bottom-center",
+      autoClose: 1000,
+    });
+    return;
+  }
 
-    axios
-      .post("https://lucky-shop-backend.onrender.com/contact", formData)
-      .then((resp) => {
-        if (resp.data.message) {
-          toast.success("Message Sent Successfully ✅",{
-            autoClose: 1000,
-            position: "bottom-center",
-          });
+  // 🔥 STRICT GMAIL VALIDATION
+  const email = formData.email.toLowerCase().trim();
 
-          getData();
-          clearForm();
-        } else {
-          toast.error("Something went wrong ❌");
+  if (!email.endsWith("@gmail.com")) {
+    toast.error("Only Gmail (@gmail.com) is allowed ❌", {
+      position: "top-center",
+      autoClose: 1500,
+    });
+    return; // ❌ STOP API CALL
+  }
+
+  if (formData.message.length < 25) {
+    toast.error("Message must be at least 25 characters long ❌", {
+      position: "bottom-center",
+      autoClose: 1500,
+    });
+    return;
+  }
+
+
+  // ✅ IF VALID → SEND TO DATABASE
+  axios
+    .post("https://lucky-shop-backend.onrender.com/contact", formData)
+    .then((resp) => {
+      if (resp.data.message) {
+        toast.success("Message Sent Successfully ✅", {
+          autoClose: 1000,
+          position: "bottom-center",
+        });
+
+        getData();
+        clearForm();
+      } else {
+        toast.error("Only Gmail addresses are allowed ❌",{
+          position: "bottom-center",
+          autoClose: 1000,
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Server Error ❌",
+        {
+          position: "bottom-center",
+          autoClose: 1000,
         }
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error("Server Error ❌");
-      });
-  };
+      );
+    });
+};
 
   return (
     <div className="container">
@@ -123,6 +174,8 @@ function Contactus() {
           type="email"
           name="email"
           placeholder="Enter Email"
+  pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
+  title="Only Gmail addresses allowed"
           value={formData.email}
           onChange={handleChange}
           className="form-control my-2"
@@ -133,6 +186,7 @@ function Contactus() {
           rows={3}
           placeholder="Message"
           value={formData.message}
+          minLength={25}
           onChange={handleChange}
           className="form-control my-2"
         ></textarea>

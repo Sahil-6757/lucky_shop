@@ -27,10 +27,21 @@ function Ditem() {
   };
 
 const handleSubmit = async (e) => {
+  
   e.preventDefault();
-
+if(Data.length >= 15){
+    toast.error("Maximum 15 items allowed",{
+      autoClose: 2000,
+      position:"bottom-center"
+    });
+    return;
+  }
   if (!(Name && Description && Rate && File)) {
-    toast.error("Empty fields");
+    toast.error("Empty fields",
+      {
+        position:"bottom-center"
+      }
+    );
     return;
   }
 
@@ -60,7 +71,10 @@ const handleSubmit = async (e) => {
       }
     );
 
-    toast.success("Item Added Successfully");
+    toast.success("Item Added Successfully",{
+      position:"bottom-center",
+      autoClose: 2000,
+    });
 
     getData();
 
@@ -82,7 +96,7 @@ const handleSubmit = async (e) => {
   let rate = document.getElementById("rate").value;
 
   if (!(name && description && rate)) {
-    toast.error("Empty fields", { autoClose: 2000 });
+    toast.error("Empty fields", { autoClose: 2000, position:"bottom-center" });
     return;
   }
 
@@ -117,7 +131,12 @@ const handleSubmit = async (e) => {
       }
     );
 
-    toast.success("Updated Successfully");
+    toast.success("Updated Successfully",
+      {
+        position:"bottom-center",
+        autoClose: 2000,
+      }
+    );
 
     getData(); // refresh
 
@@ -141,7 +160,12 @@ const handleSubmit = async (e) => {
     `https://lucky-shop-backend.onrender.com/deleteitem/${id}`
   );
 
-  toast.success("Deleted Successfully");
+  toast.success("Deleted Successfully",
+    {
+      position:"bottom-center",
+      autoClose: 2000,
+    }
+  );
 
   getData();
 };
@@ -186,6 +210,7 @@ const handleSubmit = async (e) => {
                 className="form-control"
                 name="description"
                 id="description"
+                maxLength={200}
                 value={Description}
                 rows="3"
                 onChange={(e)=>setDescrition(e.target.value)}

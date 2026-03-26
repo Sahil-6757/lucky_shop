@@ -7,6 +7,12 @@ import "../App.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 // import coconut from "../image/coconut.webp";
 
 function Crousel() {
@@ -21,13 +27,6 @@ function Crousel() {
     message: "",
   });
 
-  function clearForm() {
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
-  }
 
   try {
     useEffect(() => {
@@ -92,10 +91,9 @@ function Crousel() {
     }
   };
 
-
   return (
     <>
-      <div id="carouselExampleCaptions" className="carousel slide">
+      <div id="carouselExampleCaptions" className="carousel slide" style={{top:"-10px"}}>
         <div className="carousel-indicators">
           <button
             type="button"
@@ -171,61 +169,58 @@ function Crousel() {
         </button>
       </div>
 
-      <div className="container my-3" style={{ width: "100%" }}>
-        <h4 className="text-center text-success"> Fast Fruit Delivery </h4>
-        <h5 className="text-center text-warning">
-          Do Order with a wholesale price
-        </h5>
-        <div className="row">
-          {Data.length < 0 ? (
-            <p>No Data Found</p>
-          ) : (
-            Data.map((value, index) => {
-              // console.log(value);
-              return (
-                <>
-                  {index < 0 ? (
-                    <p>No item Found</p>
-                  ) : (
-                    <div className="col-lg-4 col-md-6 col-sm-12 mb-4 item-card">
-                      <div
-                        className="fruit-card"
-                        onClick={() => handleCard(value, index)}
-                        key={value.image}
-                        style={{ width: "20rem", height: "auto", left: "80px" }}
-                      >
-                        <img
-                          src={value.image}
-                          alt={value.image}
-                          className="fruit-img"
-                        />
+    <div className="container my-3">
+  <h4 className="text-center text-success">Fast Fruit Delivery</h4>
+  <h5 className="text-center text-warning">
+    Do Order with a wholesale price
+  </h5>
 
-                        <div className="fruit-body">
-                          <h5 className="card-title text-center">
-                            {value.name}
-                          </h5>
-                          <p className="card-text text-center">
-                            {value.description}
-                          </p>
-                          <p className="card-text text-center ">
-                            Rate: {value.rate}
-                          </p>
-                          <div className="buttonElement">
-                            <button className="btn btn-success">
-                              Order Now
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  {/* <img src={`data:${value.image.contentType};base64,${Buffer.from(value.image.data).toString('base64')}`} alt={value.image.data} style={{height:"23px", width:"23px"}}/> */}
-                </>
-              );
-            })
-          )}
+  <Swiper
+    modules={[Navigation, Pagination, Autoplay]}
+    spaceBetween={20}
+    slidesPerView={1}
+    navigation
+    pagination={{ clickable: true }}
+    autoplay={{ delay: 2500 }}
+    breakpoints={{
+      576: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      992: { slidesPerView: 3 },
+      1200: { slidesPerView: 4 },
+    }}
+  >
+    {Data.map((value, index) => (
+      <SwiperSlide key={index}>
+        <div
+          className="fruit-card"
+          onClick={() => handleCard(value, index)}
+        >
+          <img
+            src={value.image}
+            alt={value.name}
+            className="fruit-img"
+          />
+
+          <div className="fruit-body text-center">
+            <h5>{value.name}</h5>
+
+            <p className="small description">
+              {value.description}
+            </p>
+
+            <p className="fw-bold text-success">
+              ₹ {value.rate}
+            </p>
+
+            <button className="btn btn-success btn-sm">
+              Order Now
+            </button>
+          </div>
         </div>
-      </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
     </>
   );
 }

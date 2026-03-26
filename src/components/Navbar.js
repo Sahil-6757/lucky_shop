@@ -37,9 +37,8 @@ function Navbar() {
         }
       };
       document.addEventListener("mousedown", handleClickOutside);
-      let userLogin = localStorage.getItem("Login");
-      console.log(userLogin);
-      setLogin(userLogin === "true");
+     const userLogin = localStorage.getItem("Login");
+  setLogin(userLogin === "true");
       console.log(userLogin);
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
@@ -68,15 +67,7 @@ function Navbar() {
             About us
           </Link>
         </a>
-        <a className="navbar-brand text-success" href="/">
-          <Link
-            to={"/contactus"}
-            className="nav-link active aboutus"
-            aria-current="page"
-          >
-            Contact us
-          </Link>
-        </a>
+  
 
         <a className="navbar-brand text-success" href="/">
           <Link
@@ -85,6 +76,15 @@ function Navbar() {
             aria-current="page"
           >
             Product
+          </Link>
+        </a>
+              <a className="navbar-brand text-success" href="/">
+          <Link
+            to={"/contactus"}
+            className="nav-link active aboutus"
+            aria-current="page"
+          >
+            Contact us
           </Link>
         </a>
 
