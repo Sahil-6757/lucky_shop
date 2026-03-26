@@ -85,6 +85,7 @@ function Footer() {
             <p style={{textAlign:"center"}}>
               Shop No.293, Basement, New.B.J. Market, Jalgaon
             </p>
+            <p style={{textAlign:"center"}}>Book from your space <b>Fast Fruits Delivery</b></p>
         </div>
       </div>
       <p className="text-center">

@@ -80,7 +80,7 @@ function Navbar() {
 
         <a className="navbar-brand text-success" href="/">
           <Link
-            to={"/aboutus"}
+            to={"/product"}
             className="nav-link active aboutus"
             aria-current="page"
           >
@@ -118,7 +118,7 @@ function Navbar() {
             className="fa-solid fa-cart-shopping cart-icon align-center"
           ></Link>
           <p className="cart-count">{count == null ? 0 : count}</p>
-          {login ? (
+          {/* {login ? (
             <Link to="login" className="btn login-btn mx-3">
               <h5 onClick={handleLogout}>Logout</h5>
             </Link>
@@ -126,7 +126,7 @@ function Navbar() {
             <Link to="login" className="btn login-btn mx-3">
               <h5>Login</h5>
             </Link>
-          )}
+          )} */}
           <i className="fa-solid fa-bars" onClick={handleBars}></i>
           {menuOpen && (
             <div className="mobile-menu">

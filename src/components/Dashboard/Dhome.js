@@ -195,6 +195,8 @@ function Dhome() {
   }, []);
   return (
     <div className="container">
+      <h3 className="text-success text-center">Daily Entry</h3>
+      <hr />
       <div className="home-form">
         <form method="post" onSubmit={handleSubmit}>
           <input

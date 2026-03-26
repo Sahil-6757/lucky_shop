@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import { AuthContextProvider } from "./context/AuthContextProvider";
 import Aboutus from "./Pages/Aboutus";
 import Footer from "./components/Footer";
+import Product from "./Pages/Product";
 function App() {
   useEffect(() => {
     const token = localStorage.getItem("login");
@@ -38,6 +39,7 @@ function App() {
           <Route Component={Crousel} index="/" />
           <Route Component={Login} path="/login" />
           <Route Component={Aboutus} path="/aboutus" />
+          <Route Component={Product} path="/product" />
           <Route Component={Contactus} path="/Contactus" />
           <Route Component={Register} path="/register" />
           <Route Component={Cart} path="/cart" />

@@ -64,7 +64,7 @@ function Crousel() {
 
     if (itemArray.includes(value.name)) {
       toast.warn("Item already in cart", {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 1000,
       });
     } else {
@@ -77,7 +77,7 @@ function Crousel() {
       };
 
       toast.success("Added to Cart", {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 1000,
       });
 

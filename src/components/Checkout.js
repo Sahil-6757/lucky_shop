@@ -2,11 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Checkout() {
-  const navigation = useNavigate();
   const { count, setCount } = useContext(AuthContext);
   const [Items, setItems] = useState([]);
   const [result, setresult] = useState();
@@ -56,14 +54,13 @@ function Checkout() {
           let message = resp.data.message;
           if (message === "success") {
             toast.success("Order Placed Successfully", {
-              position: "top-center",
+              position: "bottom-center",
               autoClose: 1000,
             });
             localStorage.setItem("Items", "[]");
             let countItem = JSON.parse(localStorage.getItem("Items"));
             setCount(countItem.length);
             // navigation("/");
-
             const orderDetails = `
 🛒 New Order
 Name: ${formData.name}
@@ -71,11 +68,9 @@ Product: ${formData.order.map((item) => `${item.name} (x${item.count})`).join(",
 Quantity: ${formData.order.reduce((total, item) => total + item.count, 0)}
 Total: ${formData.total}
 Address: ${formData.address}
-If Shipping Address is longer than 2KM then Additional Charges will be applied. Please contact us for more details.
+Note: If Shipping Address is longer than 2KM then Additional Charges will be applied. Please contact us for more details.
   `;
-
-            const url = `https://wa.me/${8983306757}?text=${encodeURIComponent(orderDetails)}`;
-
+            const url = `https://wa.me/${+918983306757}?text=${encodeURIComponent(orderDetails)}`;
             window.open(url, "_blank");
           }
         });
