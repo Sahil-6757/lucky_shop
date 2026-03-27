@@ -3,6 +3,8 @@ import FruitsImage from "../assets/FruitsImage.png";
 import Coconut from "../assets/Coconut.png";
 import siteIcon from "../assets/siteIcon.jpg";
 import Boss from "../assets/Boss.jpeg";
+import Bosspic from "../assets/Bosspic.jpeg";
+import pineapple from "../assets/pineapple.webp";
 function Aboutus() {
   return (
     <div className="container">
@@ -25,33 +27,49 @@ function Aboutus() {
       </div>
 
       <div className="subContainer">
-     
         <div className="left">
-          <h3 style={{ color: "blue",  }}>Our Vision</h3>
+          <h3 style={{ color: "blue" }}>Our Vision</h3>
           <p className="About-para">
             We aim to become a trusted platform where people can discover the
             best fruits, health tips, and nutrition knowledge to improve their
             daily lives.
           </p>
         </div>
-           <div className="right">
+        <div className="right">
           <img src={Coconut} alt="About Us" className="About-img" />
         </div>
       </div>
-      <div className="weOffer">
+      {/* <div className="weOffer">
         <h3 style={{ color: "blue", textAlign: "center" }}>What we offer?</h3>
+        <div className="offer">
         <ul className="offer-list">
-          <li>🍎 Fresh and seasonal fruits </li>
-          <li>🥭 Information about fruit benefits and nutrition </li>
-          <li>🍊 Healthy recipes and diet tips </li>
-          <li>🍌 Guides on choosing and storing fruits </li>
-          <li>🍇 Insights into organic and farm-fresh produce </li>
+          <li>Fresh and seasonal fruits </li>
+          <li>Information about fruit benefits and nutrition </li>
+          <li>Healthy recipes and diet tips </li>
+          <li>Guides on choosing and storing fruits </li>
+          <li>Insights into organic and farm-fresh produce </li>
         </ul>
       </div>
+      </div> */}
       <div className="subContainer">
         <div className="right">
-          <img src={siteIcon} alt="About Us" className="About-img" />
+          <img src={pineapple} alt="About Us" className="About-img" />
         </div>
+        <div className="left">
+          <h3 style={{ color: "blue" }}>What we offer?</h3>
+          <div className="offer">
+        <ul className="offer-list">
+          <li>Fresh and seasonal fruits </li>
+          <li>Information about fruit benefits and nutrition </li>
+          <li>Healthy recipes and diet tips </li>
+          <li>Guides on choosing and storing fruits </li>
+          <li>Insights into organic and farm-fresh produce </li>
+        </ul>
+      </div>
+        </div>
+      </div>
+
+       <div className="subContainer">
         <div className="left">
           <h3 style={{ color: "blue" }}>Our Story</h3>
           <p className="About-para">
@@ -60,6 +78,9 @@ function Aboutus() {
             health, we wanted to create a platform that not only provides fruits
             but also educates people about their benefits.
           </p>
+        </div>
+        <div className="right">
+          <img src={siteIcon} alt="About Us" className="About-img" />
         </div>
       </div>
       <div className="container">
@@ -70,31 +91,44 @@ function Aboutus() {
           industry, they are committed to ensuring that every customer receives
           the highest quality produce.
         </p>
-        <div className="subDirector"> 
-        <div className="card" style={{ width: "18rem",height:"auto" }}>
-          <img src={Boss} className="card-img-top" style={{width:"100%",height:"220px"}} alt="..." />
-          <div className="card-body">
-            <h5 className="card-title" style={{textAlign:"center"}}>Javed Pathan</h5>
-            <p className="card-text">
-              Javed Pathan is a visionary leader with a deep passion for fruits
-              and healthy living. 
-            </p>
-            <p className="card-text">Contact no: 9822516757</p>
-           
+        <div className="subDirector">
+          <div className="card" style={{ width: "18rem", height: "auto" }}>
+            <img
+              src={Boss}
+              className="card-img-top"
+              style={{ width: "100%", height: "220px" }}
+              alt="..."
+            />
+            <div className="card-body">
+              <h5 className="card-title" style={{ textAlign: "center" }}>
+                Javed Pathan
+              </h5>
+              <p className="card-text">
+                Javed Pathan is a visionary leader with a deep passion for
+                fruits and healthy living.
+              </p>
+              <p className="card-text">Contact no: 9822516757</p>
+            </div>
+          </div>
+          <div className="card" style={{ width: "18rem", height: "auto" }}>
+            <img
+              src={Bosspic}
+              className="card-img-top"
+              style={{ width: "100%", height: "220px" }}
+              alt="..."
+            />
+            <div className="card-body">
+              <h5 className="card-title" style={{ textAlign: "center" }}>
+                Amjad Pathan
+              </h5>
+              <p className="card-text">
+                Amjad Pathan is pillar of our organization with a strong
+                commitment to quality and customer satisfaction.
+              </p>
+              <p className="card-text">Contact no: 9822416757</p>
+            </div>
           </div>
         </div>
-         <div className="card" style={{ width: "18rem",height:"auto" }}>
-          <img src={Boss} className="card-img-top" style={{width:"100%",height:"220px"}} alt="..." />
-          <div className="card-body">
-            <h5 className="card-title" style={{textAlign:"center"}}>Amjad Pathan</h5>
-            <p className="card-text">
-                Amjad Pathan is pillar of our organization with a strong commitment to quality and customer satisfaction. 
-            </p>
-            <p className="card-text">Contact no: 9822416757</p>
-           
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   );

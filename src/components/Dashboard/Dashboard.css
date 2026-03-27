@@ -50,7 +50,7 @@ ul .link {
   text-decoration: none;
   color: black;
 }
-.fa-trash{
+.fa-trash {
   cursor: pointer;
   font-size: 24px;
 }
@@ -132,7 +132,7 @@ ul .link {
   .Dnavbar-shopping-cart {
     margin-left: -0.1rem !important;
   }
- 
+
   .contact-table {
     width: 100% !important;
   }
@@ -140,10 +140,18 @@ ul .link {
 
 @media only screen and (max-width: 768px) {
   .order-table {
-    margin-left: 3rem !important;
-    width: 90% !important;
+    margin-left: 4rem !important;
+    width: 80% !important;
     overflow: scroll !important;
     font-size: 12px;
+  }
+  .item-container {
+    width: 100%;
+    margin-left: 0px !important;
+  }
+  .table-container {
+    width: 100% !important;
+    margin-left: 0rem;
   }
   .left-panel {
     width: 3.4rem;
@@ -153,9 +161,13 @@ ul .link {
     position: absolute;
     background-color: transparent;
   }
-  .item-container {
-    margin-bottom: 1rem;
-    margin-left: 4rem;
+  .home-form {
+    width: 70%;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .login-btn {

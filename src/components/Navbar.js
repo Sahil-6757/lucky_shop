@@ -37,8 +37,8 @@ function Navbar() {
         }
       };
       document.addEventListener("mousedown", handleClickOutside);
-     const userLogin = localStorage.getItem("Login");
-  setLogin(userLogin === "true");
+      const userLogin = localStorage.getItem("Login");
+      setLogin(userLogin === "true");
       console.log(userLogin);
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
@@ -57,36 +57,36 @@ function Navbar() {
             Lucky Fruits
           </Link>
         </a>
+        <div className="navbar-middle">
+          <a className="navbar-brand text-success">
+            <Link
+              to={"/aboutus"}
+              className="nav-link active aboutus hover-link mx-2"
+              aria-current="page"
+            >
+              About us
+            </Link>
+          </a>
 
-        <a className="navbar-brand text-success" href="/">
-          <Link
-            to={"/aboutus"}
-            className="nav-link active aboutus"
-            aria-current="page"
-          >
-            About us
-          </Link>
-        </a>
-  
-
-        <a className="navbar-brand text-success" href="/">
-          <Link
-            to={"/product"}
-            className="nav-link active aboutus"
-            aria-current="page"
-          >
-            Product
-          </Link>
-        </a>
-              <a className="navbar-brand text-success" href="/">
-          <Link
-            to={"/contactus"}
-            className="nav-link active aboutus"
-            aria-current="page"
-          >
-            Contact us
-          </Link>
-        </a>
+          <a className="navbar-brand text-success">
+            <Link
+              to={"/product"}
+              className="nav-link active aboutus hover-link mx-2"
+              aria-current="page"
+            >
+              Product
+            </Link>
+          </a>
+          <a className="navbar-brand text-success">
+            <Link
+              to={"/contactus"}
+              className="nav-link active aboutus hover-link mx-2"
+              aria-current="page"
+            >
+              Contact us
+            </Link>
+          </a>
+        </div>
 
         <div className="profile-dropdown" ref={dropdownRef}>
           {login ? (

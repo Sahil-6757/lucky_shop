@@ -92,8 +92,9 @@ function Footer() {
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
             slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
+            className="swiper"
+            pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet", bulletActiveClass: "swiper-pagination-bullet-active" }}
+            loop={true}
             autoplay={{ delay: 2500 }}
             breakpoints={{
               576: { slidesPerView: 1 },
@@ -102,6 +103,17 @@ function Footer() {
             }}
           >
             <SwiperSlide>
+              <div className="review-card">
+                <div className="stars">★★★★★</div>
+                <p className="date-time">2 day ago</p>
+                <p className="description">
+                  Fresh fruits quality is amazing. Highly recommended!
+                </p>
+                <div className="author">— John Doe</div>
+              </div>
+            </SwiperSlide>
+
+             <SwiperSlide>
               <div className="review-card">
                 <div className="stars">★★★★★</div>
                 <p className="date-time">2 day ago</p>
@@ -167,17 +179,17 @@ function Footer() {
           <h3 style={{ textAlign: "center" }}>Short links</h3>
           <ul className="footer-links" style={{ textAlign: "center" }}>
             <li>
-              <Link to="/aboutus" style={{ color: "white" }}>
+              <Link to="/aboutus" style={{ color: "white",textDecoration:"none" }}>
                 About Us
               </Link>
             </li>
             <li>
-              <Link to="/contactus" style={{ color: "white" }}>
+              <Link to="/contactus" style={{ color: "white",textDecoration:"none" }}>
                 Contact Us
               </Link>
             </li>
             <li>
-              <Link to="/product" style={{ color: "white" }}>
+              <Link to="/product" style={{ color: "white",textDecoration:"none" }}>
                 Products
               </Link>
             </li>
@@ -186,15 +198,17 @@ function Footer() {
 
         <div className="three">
           <h3 style={{ textAlign: "center" }}>Address</h3>
-          <p style={{ textAlign: "center" }}>
+          <h5>Lucky Maharashtra Nariyal Suppliers</h5>
+          <p >
             Shop No.293, Basement, New.B.J. Market, Jalgaon
           </p>
         </div>
       </div>
 
+     <b>
       <p className="text-center">
         &copy; 2026 Lucky Maharashtra Nariyal Suppliers
-      </p>
+      </p></b> 
     </div>
   );
 }

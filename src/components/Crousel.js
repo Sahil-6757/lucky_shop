@@ -179,9 +179,10 @@ function Crousel() {
     modules={[Navigation, Pagination, Autoplay]}
     spaceBetween={20}
     slidesPerView={1}
-    navigation
     pagination={{ clickable: true }}
     autoplay={{ delay: 2500 }}
+            loop={true}
+
     breakpoints={{
       576: { slidesPerView: 1 },
       768: { slidesPerView: 2 },

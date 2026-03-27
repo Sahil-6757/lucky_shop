@@ -247,7 +247,7 @@ if(Data.length >= 15){
               type="button"
               value="Update"
               onClick={handleUpdate}
-              className="btn btn-secondary mx-3"
+              className="btn btn-secondary my-2"
             />
           </div>
         </div>

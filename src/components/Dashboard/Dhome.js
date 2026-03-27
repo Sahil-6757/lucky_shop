@@ -196,7 +196,6 @@ function Dhome() {
   return (
     <div className="container">
       <h3 className="text-success text-center">Daily Entry</h3>
-      <hr />
       <div className="home-form">
         <form method="post" onSubmit={handleSubmit}>
           <input
@@ -236,6 +235,9 @@ function Dhome() {
           <hr />
           <h4 className="d-flex justify-content-center">Total = {totalVal}</h4>
           {/* <input type="submit" value="Save" className="btn btn-primary" /> */}
+
+          <div className="buttons">
+
           <Button type="submit" variant="contained">
             
             Save
@@ -258,6 +260,7 @@ function Dhome() {
           >
             Reset
           </Button>
+          </div>
 
           {/* <input
           type="button"

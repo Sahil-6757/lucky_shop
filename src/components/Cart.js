@@ -1,4 +1,4 @@
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import "../App.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -56,31 +56,35 @@ function Cart() {
             ) : (
               Items.map((value, index) => {
                 return (
-             <div className="cart-items">
-  <div className="cart-left">
-    <img src={value.image} className="cart-image" alt="img" />
+                  <div className="cart-items">
+                    <div className="cart-left">
+                      <img src={value.image} className="cart-image" alt="img" />
 
-    <div className="cart-info">
-      <h5>{value.name}</h5>
-      <p className="counter-rate">₹ {value.rate}</p>
-    </div>
-  </div>
+                      <div className="cart-info">
+                        <h5>{value.name}</h5>
+                        <p className="counter-rate">₹ {value.rate}</p>
+                      </div>
+                    </div>
 
-  <div className="cart-right">
-    <div className="counter">
-      <button onClick={() => handleDecrement(index)}>-</button>
-      <span>{value.count}</span>
-      <button onClick={() => handleIncrement(index)}>+</button>
-    </div>
+                    <div className="cart-right">
+                      <div className="counter">
+                        <button onClick={() => handleDecrement(index)}>
+                          -
+                        </button>
+                        <span>{value.count}</span>
+                        <button onClick={() => handleIncrement(index)}>
+                          +
+                        </button>
+                      </div>
 
-    <button
-      className="btn btn-danger remove-btn"
-      onClick={() => removeBtn(index)}
-    >
-      🗑
-    </button>
-  </div>
-</div>
+                      <button
+                        className="btn btn-danger remove-btn"
+                        onClick={() => removeBtn(index)}
+                      >
+                        🗑
+                      </button>
+                    </div>
+                  </div>
                 );
               })
             )}
