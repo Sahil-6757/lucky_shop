@@ -22,6 +22,7 @@ import { AuthContextProvider } from "./context/AuthContextProvider";
 import Aboutus from "./Pages/Aboutus";
 import Footer from "./components/Footer";
 import Product from "./Pages/Product";
+import Profile from "./components/Profile";
 function App() {
   useEffect(() => {
     const token = localStorage.getItem("login");
@@ -43,6 +44,7 @@ function App() {
           <Route Component={Register} path="/register" />
           <Route Component={Cart} path="/cart" />
           <Route Component={Checkout} path="/checkout" />
+          <Route Component={Profile} path="/profile" /> 
           <Route Component={Dashboard} path="/Dashboard">
             <Route Component={Dhome} path="dHome" />
             <Route Component={Ditem} path="dItem" />

@@ -27,7 +27,6 @@ function Crousel() {
     message: "",
   });
 
-
   try {
     useEffect(() => {
       const storedCart = JSON.parse(localStorage.getItem("Items")) || [];
@@ -45,6 +44,10 @@ function Crousel() {
       .get("https://lucky-shop-backend.onrender.com/item")
       .then((resp) => {
         setData(resp.data);
+      })
+      .catch((error) => {
+        alert("Failed to fetch items. Please try again later.");
+        console.error("Error fetching items:", error);
       });
   };
 
@@ -55,6 +58,7 @@ function Crousel() {
   }
 
   const handleCard = (value, index) => {
+    navigator.vibrate(100);
     let cartItems = localStorage.getItem("Items");
     let parseData = JSON.parse(cartItems);
     parseData?.map((data) => {
@@ -62,6 +66,7 @@ function Crousel() {
     });
 
     if (itemArray.includes(value.name)) {
+      navigator.vibrate(200, 100, 200);
       toast.warn("Item already in cart", {
         position: "bottom-center",
         autoClose: 1000,
@@ -93,7 +98,11 @@ function Crousel() {
 
   return (
     <>
-      <div id="carouselExampleCaptions" className="carousel slide" style={{top:"-10px"}}>
+      <div
+        id="carouselExampleCaptions"
+        className="carousel slide"
+        style={{ top: "-10px" }}
+      >
         <div className="carousel-indicators">
           <button
             type="button"
@@ -169,59 +178,58 @@ function Crousel() {
         </button>
       </div>
 
-    <div className="container my-3">
-  <h4 className="text-center text-success">Fast Fruit Delivery</h4>
-  <h5 className="text-center text-warning">
-    Do Order with a wholesale price
-  </h5>
+      <div className="container my-3">
+        <h4 className="text-center text-success">Fast Fruit Delivery</h4>
+        <h5 className="text-center text-warning">
+          Do Order with a wholesale price
+        </h5>
 
-  <Swiper
-    modules={[Navigation, Pagination, Autoplay]}
-    spaceBetween={20}
-    slidesPerView={1}
-    pagination={{ clickable: true }}
-    autoplay={{ delay: 2500 }}
+        {Data ? (
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 2500 }}
             loop={true}
+            breakpoints={{
+              576: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              992: { slidesPerView: 3 },
+              1200: { slidesPerView: 4 },
+            }}
+          >
+            {Data.map((value, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className="fruit-card"
+                  onClick={() => handleCard(value, index)}
+                >
+                  <img
+                    src={value.image}
+                    alt={value.name}
+                    className="fruit-img"
+                  />
 
-    breakpoints={{
-      576: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      992: { slidesPerView: 3 },
-      1200: { slidesPerView: 4 },
-    }}
-  >
-    {Data.map((value, index) => (
-      <SwiperSlide key={index}>
-        <div
-          className="fruit-card"
-          onClick={() => handleCard(value, index)}
-        >
-          <img
-            src={value.image}
-            alt={value.name}
-            className="fruit-img"
-          />
+                  <div className="fruit-body text-center">
+                    <h5>{value.name}</h5>
 
-          <div className="fruit-body text-center">
-            <h5>{value.name}</h5>
+                    <p className="small description">{value.description}</p>
 
-            <p className="small description">
-              {value.description}
-            </p>
+                    <p className="fw-bold text-success">₹ {value.rate}</p>
 
-            <p className="fw-bold text-success">
-              ₹ {value.rate}
-            </p>
-
-            <button className="btn btn-success btn-sm">
-              Order Now
-            </button>
-          </div>
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</div>
+                    <button className="btn btn-success btn-sm">
+                      Order Now
+                    </button>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p className="text-center text-danger">No items available</p>
+        )}
+      </div>
     </>
   );
 }

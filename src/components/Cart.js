@@ -17,6 +17,12 @@ function Cart() {
   }, []);
 
   const removeBtn = (index) => {
+   const output =  window.confirm("Are you sure you want to remove this item?") &&
+      navigator.vibrate(100);
+      console.log(output)
+    if (!output) {
+      return;
+    }
     const newItems = Items.filter((_, i) => i !== index);
     localStorage.setItem("Items", JSON.stringify(newItems));
     setItems(newItems);

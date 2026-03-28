@@ -8,7 +8,7 @@ import pineapple from "../assets/pineapple.webp";
 function Aboutus() {
   return (
     <div className="container">
-      <h1 style={{ textAlign: "center", color: "green" }}>About us</h1>
+      <h2 style={{ textAlign: "center", color: "green" }}>About us</h2>
       <hr />
       <div className="subContainer">
         <div className="right">

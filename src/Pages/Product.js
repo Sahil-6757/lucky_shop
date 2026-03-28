@@ -1,10 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "../App.css";
+import { toast } from "react-toastify";
+import { AuthContext } from "../context/AuthContext";
 
 function Product() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { count, setCount } = useContext(AuthContext);
+
+  // ✅ Cart state
+  const [item, setItem] = useState(
+    JSON.parse(localStorage.getItem("Items")) || [],
+  );
 
   const itemsPerPage = 8;
 
@@ -23,8 +32,44 @@ function Product() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-
   const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  // ✅ ADD TO CART FIXED
+  const handleCard = (value) => {
+    navigator.vibrate?.(100);
+
+    let cartItems = JSON.parse(localStorage.getItem("Items")) || [];
+
+    // ✅ Create name array
+    const itemArray = cartItems.map((data) => data.name);
+
+    if (itemArray.includes(value.name)) {
+      toast.warn("Item already in cart", {
+        position: "bottom-center",
+        autoClose: 1000,
+      });
+      return;
+    }
+
+    let cart = {
+      name: value.name,
+      description: value.description,
+      rate: value.rate,
+      image: value.image,
+      count: 1,
+    };
+
+    const updatedCart = [...cartItems, cart];
+
+    setItem(updatedCart);
+    localStorage.setItem("Items", JSON.stringify(updatedCart));
+    setCount(updatedCart.length);
+
+    toast.success("Added to Cart", {
+      position: "bottom-center",
+      autoClose: 1000,
+    });
+  };
 
   return (
     <div className="product-page">
@@ -39,12 +84,12 @@ function Product() {
 
             <div className="product-body">
               <h5>{item.name}</h5>
-
               <p className="desc">{item.description}</p>
-
               <p className="price">₹ {item.rate}</p>
 
-              <button>Add to Cart</button>
+              <button className="AddtoCart" onClick={() => handleCard(item)}>
+                Add to Cart
+              </button>
             </div>
           </div>
         ))}

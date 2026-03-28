@@ -242,7 +242,7 @@ if(Data.length >= 15){
                 id="image"
               />
             </div>
-            <input type="submit" value="Post" className="btn btn-success " />
+            <input type="submit" value="Post" className="btn btn-success mx-2" />
             <input
               type="button"
               value="Update"
@@ -290,7 +290,7 @@ if(Data.length >= 15){
                           <div className="buttonElement">
                             <button
                               href="#"
-                              className="btn btn-primary m-auto"
+                              className="btn btn-primary m-auto mx-1"
                               onClick={() =>
                                 handleEdit(
                                   value._id,

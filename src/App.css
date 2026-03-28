@@ -10,6 +10,11 @@
 .whatsapp-float{
   text-decoration: none;
 }
+.subLinks:hover {
+  font-size: 1.1rem;
+  color: rgb(231, 123, 245) !important;
+  font-weight: 600;
+}
 .form-content{
   display: flex;
   justify-content: space-between;
@@ -24,14 +29,22 @@
   margin-top: 20px;
 }
 
+
 /* OR more control */
 .swiper-pagination-bullets {
   bottom: -10px !important;  /* 🔥 move down */
   height: 50px;
 }
+
 .navbar-middle{
   display: flex;
   align-items: center;
+}
+.button-container{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 /* Flex Layout */
@@ -155,6 +168,11 @@
   .item-rate {
     font-size: 16px;
   }
+  .swiper-pagination-bullets{
+    height: 30px;
+    margin-top: -10px;
+
+}
 }
 
 /* ===== PAGE ===== */
@@ -349,7 +367,11 @@
   border-radius: 15px;
   object-fit: cover;
 }
+.hover-link{
+  font-size: 20px;
+    color: #4cd44c;
 
+}
 /* Text */
 .About-para {
   font-size: 1.1rem;
@@ -590,6 +612,7 @@
   margin-bottom: 0.5rem;
   text-decoration: none;
 }
+
 
 /* 📱 MOBILE VIEW */
 @media (max-width: 768px) {
@@ -927,6 +950,11 @@
 /* REMOVE BUTTON */
 .remove-btn {
   padding: 6px 10px;
+}
+.result{
+  color: #198754;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 /* ================= MOBILE ================= */
@@ -1299,7 +1327,7 @@
   height: 13px;
   font-weight: 500;
   width: 13px;
-  color: black;
+  color: rgb(0, 0, 0);
   text-align: center;
   display: flex;
   justify-content: center;

@@ -29,6 +29,12 @@ function Navbar() {
     setMenuOpen(!menuOpen);
   };
 
+    const scrollTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
   useEffect(() => {
     try {
       const handleClickOutside = (e) => {
@@ -48,7 +54,7 @@ function Navbar() {
   return (
     <>
       <div className="navbar">
-        <a className="site-Title text-success" href="/">
+        <a className="site-Title text-success" href="/" onClick={scrollTop}>
           <Link
             to={"/"}
             className="nav-link active luckyFruits"
@@ -58,7 +64,7 @@ function Navbar() {
           </Link>
         </a>
         <div className="navbar-middle">
-          <a className="navbar-brand text-success">
+          <a className="navbar-brand text-success" onClick={scrollTop}>
             <Link
               to={"/aboutus"}
               className="nav-link active aboutus hover-link mx-2"
@@ -68,7 +74,7 @@ function Navbar() {
             </Link>
           </a>
 
-          <a className="navbar-brand text-success">
+          <a className="navbar-brand text-success" onClick={scrollTop}>
             <Link
               to={"/product"}
               className="nav-link active aboutus hover-link mx-2"
@@ -77,7 +83,7 @@ function Navbar() {
               Product
             </Link>
           </a>
-          <a className="navbar-brand text-success">
+          <a className="navbar-brand text-success" onClick={scrollTop}>
             <Link
               to={"/contactus"}
               className="nav-link active aboutus hover-link mx-2"
@@ -115,7 +121,13 @@ function Navbar() {
         <div className="Navbar-login">
           <Link
             to="cart"
+            onClick={scrollTop}
             className="fa-solid fa-cart-shopping cart-icon align-center"
+          ></Link>
+           <Link
+            to="profile"
+            onClick={scrollTop}
+            className="fa-solid fa-user mx-3 cart-icon align-center"
           ></Link>
           <p className="cart-count">{count == null ? 0 : count}</p>
           {/* {login ? (

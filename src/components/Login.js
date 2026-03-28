@@ -58,7 +58,7 @@ function Login() {
           setLogin(true); // 🔥 FIX
           localStorage.setItem("Login", "true"); // 🔥 FIX
 
-          navigation("/Dashboard");
+          navigation("/Dashboard/dHome");
         }
 
         // ❌ INVALID
