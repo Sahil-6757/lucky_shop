@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import "../App.css"
+import { toast } from 'react-toastify';
 function Profile() {
     const [data, setdata] = useState(null)
     const [order, setOrder] = useState(null)
@@ -19,6 +20,26 @@ function Profile() {
       });   
 
   }
+
+
+  const handleCancelOrder = (orderId) => {
+    let ask = window.confirm(`Are you sure you want to cancel this order?`);
+    if (!ask) return;
+    axios.delete(`https://lucky-shop-backend.onrender.com/delete-order/${orderId}`)
+      .then((resp) => {
+        toast. success("Order Cancelled Successfully", {
+          autoClose: 1000,
+          position: "bottom-center",
+        });
+        getOrderData(); // Refresh order data after cancellation
+      }
+        )
+        .catch((err) => {
+            console.log(err);
+            alert("Failed to cancel order");
+        });
+  };
+
   useEffect(() => {
   getuserData();
 }, []);
@@ -54,7 +75,17 @@ useEffect(() => {
 
                   <strong>Payment ID:</strong> {item.payement_id}<br />
                   <strong>Total:</strong> {item.total}
+                   {/* 🔥 CANCEL BUTTON */}
+          {(item.status === "Pending")?
+  <button
+    className="btn btn-danger w-auto cancel-btn"
+    onClick={() => handleCancelOrder(item._id)}
+  >
+    Cancel Order
+  </button>: <h6>Status: {item.status}</h6>
+}
                 </li>
+                
               ))}
             </ul>
           ) : (

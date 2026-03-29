@@ -10,6 +10,14 @@
 .whatsapp-float{
   text-decoration: none;
 }
+.cancel-btn{
+  border: none;
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
 .subLinks:hover {
   font-size: 1.1rem;
   color: rgb(231, 123, 245) !important;

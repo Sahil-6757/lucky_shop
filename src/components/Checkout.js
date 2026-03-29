@@ -21,6 +21,7 @@ function Checkout() {
     city: "",
     postalCode: "",
     order_id: "",
+    status: "Pending",
     payement_id: "Cash on Delivery",
     total: "",
   });
@@ -35,7 +36,9 @@ function Checkout() {
         mobile: userDetails.mobile || "",
         address: userDetails.address || "",
       }));
+
     }
+    getData();
   };
 
   // ✅ HANDLE CHANGE
@@ -149,13 +152,18 @@ Note: If Distance is more than 2km then delivery charge will be applied. Please 
   };
 
   useEffect(() => {
-    getuserData();
     getData();
+    getuserData();
   }, []);
 
-  useEffect(() => {
-    total();
-  }, [Items]);
+useEffect(() => {
+  setFormData((prev) => ({
+    ...prev,
+    order: Items,
+    total: result,
+  }));
+  total();
+}, [Items, result]);
 
   return (
     <div className="container">

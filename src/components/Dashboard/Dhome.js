@@ -130,7 +130,7 @@ function Dhome() {
     console.log(result);
     if (result) {
       axios
-        .delete(`http://localhost:8000/sales-delete/${e}`)
+        .delete(`https://lucky-shop-backend.onrender.com/sales-delete/${e}`)
         .then(async (resp) => {
           getData();
           toast.success("Deleted Succssfully", {

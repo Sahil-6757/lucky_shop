@@ -23,6 +23,25 @@ function Dorder() {
     createData(value.name, value.email);
   });
 
+  const handleStatusChange = async (id, status) => {
+  try {
+    await axios.put(
+      `https://lucky-shop-backend.onrender.com/updateOrderStatus/${id}`,
+      { status }
+    );
+
+    toast.success(`Order marked as ${status}`, {
+      position: "top-center",
+      autoClose: 1000,
+    });
+
+    getData(); // refresh
+  } catch (error) {
+    console.log(error);
+    toast.error("Failed to update status");
+  }
+};
+
   const handleDelete = (e, name) => {
     let ask = window.confirm(
       `Are you sure you want to delete order of ${name}?`,
@@ -67,7 +86,7 @@ function Dorder() {
                 Total
               </th>
               <th scope="col" style={{ textAlign: "left" }}>
-                Action
+                Status
               </th>
             </tr>
           </thead>
@@ -147,12 +166,29 @@ function Dorder() {
                   </td>
                   <td>{value.total}</td>
                   <td>
-                    <i
-                      class="fa-solid fa-check"
-                      style={{ fontSize: "1.4rem" }}
-                    ></i>
-                    {/* <button className="btn btn-primary">Complete</button> */}
-                  </td>
+      {
+  (value.status === "Pending") ? (
+    <>
+      <button
+        className="btn btn-success btn-sm mx-1"
+        onClick={() => handleStatusChange(value._id, "Delivered")}
+      >
+        Deliver
+      </button>
+
+      <button
+        className="btn btn-warning btn-sm mx-1"
+        onClick={() => handleStatusChange(value._id, "Cancelled")}
+      >
+        Cancel
+      </button>
+    </>
+  ) : (
+    <h6>Status: {value.status}</h6>
+  )
+      }              
+ 
+</td>
                   <td>
                     <i
                       class="fa-solid fa-trash text-danger"
