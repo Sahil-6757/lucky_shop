@@ -4,6 +4,7 @@ import "../App.css";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { useRef, useState } from "react";
+import siteIcon from "../assets/siteIcon.jpg";
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -61,6 +62,8 @@ function Navbar() {
             aria-current="page"
           >
             Lucky Fruits
+
+          <img src={siteIcon} alt="Site Icon" className="site-icon" />
           </Link>
         </a>
         <div className="navbar-middle">
