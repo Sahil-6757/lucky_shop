@@ -242,7 +242,7 @@ if(Data.length >= 15){
                 id="image"
               />
             </div>
-            <input type="submit" value="Post" className="btn btn-success mx-2" />
+            <input type="submit" value="Post" className="btn btn-success itemSubmit-btn" />
             <input
               type="button"
               value="Update"
@@ -255,7 +255,7 @@ if(Data.length >= 15){
 
       <div className="container">
         <h2 className="text-center text-success">Item Records</h2>
-        <div className="row">
+        <div className="row Ditem-row">
           {Data.length < 0 ? (
             <p>No Data Found</p>
           ) : (

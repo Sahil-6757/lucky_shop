@@ -135,6 +135,7 @@ function Footer() {
           <img src={siteIcon} alt="siteImage" className="footer-site-icon" />
           <h4 className="text-center text-light">Fast Fruit Delivery</h4>
           <p>We provide excellent quality fruits with fast delivery.</p>
+          <p>Available 9:00 AM - 9:00 PM only in Jalgaon.</p>
         </div>
 
         <div className="two">

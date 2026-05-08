@@ -128,6 +128,10 @@ ul .link {
   overflow: hidden;
 }
 
+.itemSubmit-btn{
+  margin-right: 0.5rem;
+}
+
 @media only screen and (max-width: 1080px) {
   .Dnavbar-shopping-cart {
     margin-left: -0.1rem !important;
@@ -145,9 +149,16 @@ ul .link {
     overflow: scroll !important;
     font-size: 12px;
   }
+  .Ditem-row{
+    margin-left: 0rem !important;
+    margin-right: 0rem !important;
+  }
+
+
   .item-container {
     width: 100%;
-    margin-left: 0px !important;
+    display: flex;
+    justify-content: center;
   }
   .table-container {
     width: 100% !important;

@@ -38,20 +38,20 @@ function Login() {
         // ✅ NORMAL USER LOGIN
         if (result === "login Success") {
           toast.success("Login Success", {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 1000,
           });
 
           setLogin(true); // 🔥 FIX
           localStorage.setItem("Login", "true"); // 🔥 FIX
 
-          // navigation("/");
+          navigation("/dashboard/dHome");
         }
 
         // ✅ ADMIN LOGIN
         else if (result === "Admin login Success") {
           toast.success("Admin Login", {
-            position: "top-center",
+            position: "bottom-center",
             autoClose: 1000,
           });
 

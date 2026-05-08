@@ -1042,6 +1042,12 @@
   justify-content: flex-end;
   padding: 1rem;
 }
+.fa-trash {
+  font-size: 16px;
+}
+.cart-items .btn-danger {
+    padding: 2px 8px;
+}
 
 /* ================= MOBILE FIX ================= */
 
@@ -1054,8 +1060,8 @@
   }
 
   .cart-image {
-    width: 70px;
-    height: 70px;
+    width: 200px;
+    height: 110px;
   }
 
   .cart-items h4 {
@@ -1158,6 +1164,7 @@
   font-weight: 600;
   text-decoration: none;
 }
+
 
 .fa-bars {
   display: none;
@@ -1272,8 +1279,9 @@
   position: sticky;
   overflow: hidden;
   z-index: 9999;
-  background-color: #061c30;
   padding: 12px;
+  background-color: #d1f1d5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   opacity: 0.9;
 }
 .navbar-brand {
@@ -1348,6 +1356,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: rgb(247, 150, 150);
+  background-color: rgb(245, 240, 240);
   top: 12px;
 }

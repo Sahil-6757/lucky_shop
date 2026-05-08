@@ -57,13 +57,13 @@ function Cart() {
             </div>
 
             <hr />
-            {Items == null ? (
-              <p className="text-center">No Data Found</p>
+            {Items.length === 0 ? (
+              <p className="text-center text-muted">No Data Found</p>
             ) : (
               Items.map((value, index) => {
                 return (
                   <div className="cart-items">
-                    <div className="cart-left">
+                    <div className="cart-left d-flex align-items-center gap-3 justify-content-center">
                       <img src={value.image} className="cart-image" alt="img" />
 
                       <div className="cart-info">
@@ -87,7 +87,7 @@ function Cart() {
                         className="btn btn-danger remove-btn"
                         onClick={() => removeBtn(index)}
                       >
-                        🗑
+                        <i className="fa-solid fa-trash"></i> 
                       </button>
                     </div>
                   </div>

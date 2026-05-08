@@ -122,7 +122,7 @@ function Checkout() {
 
           localStorage.setItem("Items", "[]");
           setCount(0);
-          navigation("/");
+          navigation("/profile");
 
           const orderDetails = `
 🛒 New Order
@@ -221,7 +221,7 @@ useEffect(() => {
         <table className="table">
           <thead>
             <tr>
-              <th>#</th>
+              <th>No</th>
               <th>Item Name</th>
               <th>Count</th>
               <th>Rate</th>
