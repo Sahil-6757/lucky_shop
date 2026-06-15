@@ -45,17 +45,6 @@ function Contactus() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // ✅ fetch contact data
-  const getData = async () => {
-    try {
-      const res = await axios.get(
-        "https://lucky-shop-backend.onrender.com/contact",
-      );
-      setData(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   // ✅ dummy function (if needed)
   const getItems = () => {
@@ -88,7 +77,6 @@ function Contactus() {
     const storedCart = JSON.parse(localStorage.getItem("Items")) || [];
     setItem(storedCart);
     setCount(storedCart.length);
-    getData();
     getItems();
     getuserData();
   }, []);
@@ -134,7 +122,6 @@ function Contactus() {
             position: "bottom-center",
           });
 
-          getData();
           clearForm();
         } else {
           toast.error("Only Gmail addresses are allowed ❌", {

@@ -25,89 +25,27 @@ function Ditem() {
       });
   };
 
-const handleSubmit = async (e) => {
-  
-  e.preventDefault();
-if(Data.length >= 15){
-    toast.error("Maximum 15 items allowed",{
-      autoClose: 2000,
-      position:"bottom-center"
-    });
-    return;
-  }
-  if (!(Name && Description && Rate && File)) {
-    toast.error("Empty fields",
-      {
-        position:"bottom-center"
-      }
-    );
-    return;
-  }
+  const handleSubmit = async (e) => {
 
-  try {
-    // Upload Image to Cloudinary
-    const cloudData = new FormData();
-    cloudData.append("file", File);
-    cloudData.append("upload_preset", "lucky-shop");
-
-    const cloudRes = await axios.post(
-      "https://api.cloudinary.com/v1_1/dbi2w9wjw/image/upload",
-      cloudData
-    );
-
-    const formData = {
-      name: Name,
-      description: Description,
-      rate: Rate,
-      image: cloudRes.data.secure_url,
+    e.preventDefault();
+    if (Data.length >= 15) {
+      toast.error("Maximum 15 items allowed", {
+        autoClose: 2000,
+        position: "bottom-center"
+      });
+      return;
     }
-    // Send to Backend ✅ With Headers
-    await axios.post(
-      "https://lucky-shop-backend.onrender.com/item",formData,{
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    if (!(Name && Description && Rate && File)) {
+      toast.error("Empty fields",
+        {
+          position: "bottom-center"
+        }
+      );
+      return;
+    }
 
-    toast.success("Item Added Successfully",{
-      position:"bottom-center",
-      autoClose: 2000,
-    });
-
-    getData();
-
-    setName("");
-    setDescrition("");
-    setRate("");
-    setFile(null);
-
-  } catch (error) {
-    console.log("Submit Error:", error);
-  }
-};
-
-
-
- const handleUpdate = async () => {
-  let name = document.getElementById("name").value;
-  let description = document.getElementById("description").value;
-  let rate = document.getElementById("rate").value;
-
-  if (!(name && description && rate)) {
-    toast.error("Empty fields", { autoClose: 2000, position:"bottom-center" });
-    return;
-  }
-
-  try {
-    // ✅ Create new FormData here also
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("rate", rate);
-
-    // ✅ If user selected new image
-    if (File) {
+    try {
+      // Upload Image to Cloudinary
       const cloudData = new FormData();
       cloudData.append("file", File);
       cloudData.append("upload_preset", "lucky-shop");
@@ -117,32 +55,95 @@ if(Data.length >= 15){
         cloudData
       );
 
-      formData.append("image", cloudRes.data.secure_url);
-    }
-
-    await axios.put(
-      `https://lucky-shop-backend.onrender.com/edititem/${Id}`,
-      formData,
-      {
+      const formData = {
+        name: Name,
+        description: Description,
+        rate: Rate,
+        image: cloudRes.data.secure_url,
+      }
+      // Send to Backend ✅ With Headers
+      console.log(formData)
+      await axios.post(
+        "https://lucky-shop-backend.onrender.com/item", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       }
-    );
+      );
 
-    toast.success("Updated Successfully",
-      {
-        position:"bottom-center",
+      toast.success("Item Added Successfully", {
+        position: "bottom-center",
         autoClose: 2000,
+      });
+
+      getData();
+
+      setName("");
+      setDescrition("");
+      setRate("");
+      setFile(null);
+
+    } catch (error) {
+      console.log("Submit Error:", error);
+    }
+  };
+
+
+
+  const handleUpdate = async () => {
+    let name = document.getElementById("name").value;
+    let description = document.getElementById("description").value;
+    let rate = document.getElementById("rate").value;
+
+    if (!(name && description && rate)) {
+      toast.error("Empty fields", { autoClose: 2000, position: "bottom-center" });
+      return;
+    }
+
+    try {
+      // ✅ Create new FormData here also
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("rate", rate);
+
+      // ✅ If user selected new image
+      if (File) {
+        const cloudData = new FormData();
+        cloudData.append("file", File);
+        cloudData.append("upload_preset", "lucky-shop");
+
+        const cloudRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dbi2w9wjw/image/upload",
+          cloudData
+        );
+
+        formData.append("image", cloudRes.data.secure_url);
       }
-    );
 
-    getData(); // refresh
+      await axios.put(
+        `https://lucky-shop-backend.onrender.com/edititem/${Id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-  } catch (error) {
-    console.log(error);
-  }
-};
+      toast.success("Updated Successfully",
+        {
+          position: "bottom-center",
+          autoClose: 2000,
+        }
+      );
+
+      getData(); // refresh
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   const handleEdit = async (id, name, description, rate, image) => {
@@ -153,21 +154,21 @@ if(Data.length >= 15){
   };
 
   const handleDelete = async (id) => {
-  if (!window.confirm("Are you sure?")) return;
+    if (!window.confirm("Are you sure?")) return;
 
-  await axios.delete(
-    `https://lucky-shop-backend.onrender.com/deleteitem/${id}`
-  );
+    await axios.delete(
+      `https://lucky-shop-backend.onrender.com/deleteitem/${id}`
+    );
 
-  toast.success("Deleted Successfully",
-    {
-      position:"bottom-center",
-      autoClose: 2000,
-    }
-  );
+    toast.success("Deleted Successfully",
+      {
+        position: "bottom-center",
+        autoClose: 2000,
+      }
+    );
 
-  getData();
-};
+    getData();
+  };
 
 
   useEffect(() => {
@@ -212,7 +213,7 @@ if(Data.length >= 15){
                 maxLength={200}
                 value={Description}
                 rows="3"
-                onChange={(e)=>setDescrition(e.target.value)}
+                onChange={(e) => setDescrition(e.target.value)}
                 placeholder="Item Description"
               ></textarea>
             </div>
@@ -225,8 +226,8 @@ if(Data.length >= 15){
                 type="number"
                 value={Rate}
                 className="form-control"
-                onChange={(e)=>setRate(e.target.value)}
-                
+                onChange={(e) => setRate(e.target.value)}
+
                 name="rate"
                 id="rate"
                 placeholder="Item Rate"
@@ -237,12 +238,12 @@ if(Data.length >= 15){
                 type="file"
                 className="form-control"
                 name="image"
-                
+
                 onChange={handleFile}
                 id="image"
               />
             </div>
-            <input type="submit" value="Post" className="btn btn-success mx-2" />
+            <input type="submit" value="Post" className="btn btn-success itemSubmit-btn" />
             <input
               type="button"
               value="Update"
@@ -255,7 +256,7 @@ if(Data.length >= 15){
 
       <div className="container">
         <h2 className="text-center text-success">Item Records</h2>
-        <div className="row">
+        <div className="row Ditem-row">
           {Data.length < 0 ? (
             <p>No Data Found</p>
           ) : (

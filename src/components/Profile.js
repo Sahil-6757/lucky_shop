@@ -16,6 +16,7 @@ function Profile() {
       })
       .then((res) => {
         console.log(res.data);
+        // const sortedOrders = res.data.sort((a, b) => new Date(b.time) - new Date(a.time));
         setOrder(res.data);
       })
       .catch((err) => {

@@ -123,25 +123,26 @@ function Navbar() {
 
         <div className="Navbar-login">
           <Link
-            to="cart"
+            to="/cart"
             onClick={scrollTop}
             className="fa-solid fa-cart-shopping cart-icon align-center"
           ></Link>
-           <Link
-            to="profile"
+          <Link
+            to="/profile"
             onClick={scrollTop}
             className="fa-solid fa-user mx-3 cart-icon align-center"
           ></Link>
           <p className="cart-count">{count == null ? 0 : count}</p>
-          {/* {login ? (
-            <Link to="login" className="btn login-btn mx-3">
-              <h5 onClick={handleLogout}>Logout</h5>
-            </Link>
+          
+          {login ? (
+            <button className="login-btn mx-2" onClick={handleLogout}>
+              Logout
+            </button>
           ) : (
-            <Link to="login" className="btn login-btn mx-3">
-              <h5>Login</h5>
+            <Link to="/login" className="login-btn mx-2">
+              Login
             </Link>
-          )} */}
+          )}
           <i className="fa-solid fa-bars" onClick={handleBars}></i>
           {menuOpen && (
             <div className="mobile-menu">

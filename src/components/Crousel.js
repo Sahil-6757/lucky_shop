@@ -87,18 +87,15 @@ function Crousel() {
 
       // ✅ Correct way
       const updatedCart = [...item, cart];
-
       setItem(updatedCart);
-
       localStorage.setItem("Items", JSON.stringify(updatedCart));
-
       setCount(updatedCart.length);
     }
   };
 
   return (
     <>
-      <div
+      {/* <div
         id="carouselExampleCaptions"
         className="carousel slide"
         style={{ top: "-10px" }}
@@ -176,6 +173,14 @@ function Crousel() {
           ></span>
           <span className="visually-hidden">Next</span>
         </button>
+      </div> */}
+
+      <div className="Banner">
+        <img src={image1} alt="" className="w-100" />
+        <div className="Banner-content">
+          <h1 >Fresh Full Water <br /> <span className="text-white"> Green Coconut </span></h1>
+          <button className="btn btn-success">Order Now</button>
+        </div>
       </div>
 
       <div className="container my-3">
@@ -203,7 +208,6 @@ function Crousel() {
               <SwiperSlide key={index}>
                 <div
                   className="fruit-card"
-                  onClick={() => handleCard(value, index)}
                 >
                   <img
                     src={value.image}
@@ -218,7 +222,7 @@ function Crousel() {
 
                     <p className="fw-bold text-success">₹ {value.rate}</p>
 
-                    <button className="btn btn-success btn-sm">
+                    <button className="btn btn-success btn-sm" onClick={() => handleCard(value, index)}>
                       Order Now
                     </button>
                   </div>
