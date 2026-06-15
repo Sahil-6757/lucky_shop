@@ -132,6 +132,11 @@ function Navbar() {
             onClick={scrollTop}
             className="fa-solid fa-user mx-3 cart-icon align-center"
           ></Link>
+           <Link
+            to="login"
+            onClick={scrollTop}
+            className="fa-solid fa-sign-in mx-3 cart-icon align-center"
+          ></Link>
           <p className="cart-count">{count == null ? 0 : count}</p>
           
           {login ? (

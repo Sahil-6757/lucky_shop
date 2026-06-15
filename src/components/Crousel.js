@@ -130,7 +130,7 @@ function Crousel() {
               <p>Daily import fresh coconut from various Konkan area.</p>
             </div>
           </div>
-          <div className="carousel-item">
+          {/* <div className="carousel-item">
             <img src={image2} className="d-block w-100" alt="..." />
             <div className="carousel-caption d-none d-md-block">
               <h5>Second slide label</h5>
@@ -138,8 +138,8 @@ function Crousel() {
                 Some representative placeholder content for the second slide.
               </p>
             </div>
-          </div>
-          <div className="carousel-item">
+          </div> */}
+          {/* <div className="carousel-item">
             <img src={image3} className="d-block w-100" alt="..." />
             <div className="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>
@@ -147,7 +147,7 @@ function Crousel() {
                 Some representative placeholder content for the third slide.
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
         <button
           className="carousel-control-prev"
