@@ -23,6 +23,7 @@ import Aboutus from "./Pages/Aboutus";
 import Footer from "./components/Footer";
 import Product from "./Pages/Product";
 import Profile from "./components/Profile";
+import DVechical from "./components/Dashboard/Dvehical";
 function App() {
   useEffect(() => {
     const token = localStorage.getItem("login");
@@ -33,7 +34,9 @@ function App() {
   return (
     <>
       <AuthContextProvider>
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-center"
+        />
         <Navbar />
         <Routes>
           <Route Component={Crousel} index="/" />
@@ -44,7 +47,7 @@ function App() {
           <Route Component={Register} path="/register" />
           <Route Component={Cart} path="/cart" />
           <Route Component={Checkout} path="/checkout" />
-          <Route Component={Profile} path="/profile" /> 
+          <Route Component={Profile} path="/profile" />
           <Route Component={Dashboard} path="/Dashboard">
             <Route Component={Dhome} path="dHome" />
             <Route Component={Ditem} path="dItem" />
@@ -52,9 +55,10 @@ function App() {
             <Route Component={Dcontact} path="dContact" />
             <Route Component={Duser} path="dUser" />
             <Route Component={Dsetting} path="dSetting" />
+            <Route Component={DVechical} path="dVechicalBill" />
           </Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </AuthContextProvider>
     </>
   );

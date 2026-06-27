@@ -31,7 +31,7 @@ function Login() {
     }
 
     axios
-      .post("https://lucky-shop-backend.onrender.com/login", formData)
+      .post(`${process.env.REACT_APP_API_URL}/login`, formData)
       .then((resp) => {
         let result = resp.data.message;
 

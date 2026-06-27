@@ -112,7 +112,7 @@ function Checkout() {
 
     // API call
     axios
-      .post("https://lucky-shop-backend.onrender.com/order", formData)
+      .post(`${process.env.REACT_APP_API_URL}/order`, formData)
       .then((resp) => {
         if (resp.data.message === "success") {
           toast.success("Order Placed Successfully", {

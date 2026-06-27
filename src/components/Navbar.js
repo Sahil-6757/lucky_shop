@@ -30,12 +30,12 @@ function Navbar() {
     setMenuOpen(!menuOpen);
   };
 
-    const scrollTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    };
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   useEffect(() => {
     try {
       const handleClickOutside = (e) => {
@@ -49,7 +49,7 @@ function Navbar() {
       console.log(userLogin);
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
-    } catch (error) {}
+    } catch (error) { }
   }, []);
 
   return (
@@ -63,7 +63,7 @@ function Navbar() {
           >
             Lucky Fruits
 
-          <img src={siteIcon} alt="Site Icon" className="site-icon" />
+            <img src={siteIcon} alt="Site Icon" className="site-icon" />
           </Link>
         </a>
         <div className="navbar-middle">
@@ -132,13 +132,9 @@ function Navbar() {
             onClick={scrollTop}
             className="fa-solid fa-user mx-3 cart-icon align-center"
           ></Link>
-           <Link
-            to="login"
-            onClick={scrollTop}
-            className="fa-solid fa-sign-in mx-3 cart-icon align-center"
-          ></Link>
+
           <p className="cart-count">{count == null ? 0 : count}</p>
-          
+
           {login ? (
             <button className="login-btn mx-2" onClick={handleLogout}>
               Logout

@@ -10,10 +10,10 @@ function DNavbar() {
   //   }
   // }
 
-  const handleBars = () => {};
+  const handleBars = () => { };
   return (
     <>
-    
+
       <div className="left-panel">
         <ul>
           {/* <li>
@@ -42,8 +42,12 @@ function DNavbar() {
             <span className="nav-title">Users</span>
           </Link>
           <Link to={"dSetting"} className="link my-4">
-            <i className="fa-icon fa-solid fa-gear "></i>
-            <span className="nav-title">Settings</span>
+            <i className="fa-icon fa-solid fa-money-bill "></i>
+            <span className="nav-title">Transactions</span>
+          </Link>
+          <Link to={"dVechicalBill"} className="link my-4">
+            <i className="fa-icon fa-solid fa-truck "></i>
+            <span className="nav-title">Vehicals Bill</span>
           </Link>
         </ul>
       </div>

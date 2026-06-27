@@ -11,7 +11,7 @@ function Profile() {
   };
   function getOrderData() {
     axios
-      .post("https://lucky-shop-backend.onrender.com/getorder", {
+      .post(`${process.env.REACT_APP_API_URL}/getorder`, {
         data: data.email,
       })
       .then((res) => {
@@ -28,7 +28,7 @@ function Profile() {
     let ask = window.confirm(`Are you sure you want to cancel this order?`);
     if (!ask) return;
     axios
-      .delete(`https://lucky-shop-backend.onrender.com/delete-order/${orderId}`)
+      .delete(`${process.env.REACT_APP_API_URL}/delete-order/${orderId}`)
       .then((resp) => {
         toast.success("Order Cancelled Successfully", {
           autoClose: 1000,

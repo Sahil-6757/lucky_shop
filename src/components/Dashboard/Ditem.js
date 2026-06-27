@@ -18,7 +18,7 @@ function Ditem() {
 
   const getData = async () => {
     await axios
-      .get("https://lucky-shop-backend.onrender.com/item")
+      .get(`${process.env.REACT_APP_API_URL}/item`)
       .then((resp) => {
         console.log(resp.data)
         setData(resp.data);
@@ -64,7 +64,7 @@ function Ditem() {
       // Send to Backend ✅ With Headers
       console.log(formData)
       await axios.post(
-        "https://lucky-shop-backend.onrender.com/item", formData, {
+        `${process.env.REACT_APP_API_URL}/item`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -122,7 +122,7 @@ function Ditem() {
       }
 
       await axios.put(
-        `https://lucky-shop-backend.onrender.com/edititem/${Id}`,
+        `${process.env.REACT_APP_API_URL}/edititem/${Id}`,
         formData,
         {
           headers: {
@@ -157,7 +157,7 @@ function Ditem() {
     if (!window.confirm("Are you sure?")) return;
 
     await axios.delete(
-      `https://lucky-shop-backend.onrender.com/deleteitem/${id}`
+      `${process.env.REACT_APP_API_URL}/deleteitem/${id}`
     );
 
     toast.success("Deleted Successfully",
@@ -176,7 +176,7 @@ function Ditem() {
   }, []);
 
   return (
-    <>
+    <div className="container-fluid py-4 px-2 px-md-4 dashboard-main">
       <form
         action=""
         onSubmit={handleSubmit}
@@ -324,7 +324,7 @@ function Ditem() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

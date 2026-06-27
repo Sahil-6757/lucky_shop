@@ -25,9 +25,11 @@ function Dashboard() {
 
   // ✅ If logged in → show dashboard
   return (
-    <div>
+    <div className="d-flex flex-column flex-md-row min-vh-100 w-100">
       <DNavbar />
-      <Outlet />
+      <div className="flex-grow-1 overflow-hidden dashboard-content-wrapper">
+        <Outlet />
+      </div>
     </div>
   );
 }

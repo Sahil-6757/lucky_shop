@@ -19,7 +19,7 @@ function Product() {
 
   useEffect(() => {
     axios
-      .get("https://lucky-shop-backend.onrender.com/item")
+      .get(`${process.env.REACT_APP_API_URL}/item`)
       .then((res) => {
         setData(res.data);
       })

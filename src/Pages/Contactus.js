@@ -114,7 +114,7 @@ function Contactus() {
 
     // ✅ IF VALID → SEND TO DATABASE
     axios
-      .post("https://lucky-shop-backend.onrender.com/contact", formData)
+      .post(`${process.env.REACT_APP_API_URL}/contact`, formData)
       .then((resp) => {
         if (resp.data.message) {
           toast.success("Message Sent Successfully ✅", {

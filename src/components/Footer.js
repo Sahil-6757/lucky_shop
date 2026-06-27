@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../App.css";
 import siteIcon from "../assets/siteIcon.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // ✅ Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -36,6 +36,9 @@ function Footer() {
       behavior: "smooth",
     });
   };
+
+  const location = useLocation();
+  const isDashboard = location.pathname.toLowerCase().startsWith("/dashboard");
 
   const number = 9822516757;
   const whatsappLink = `https://wa.me/${number}`;
@@ -113,17 +116,19 @@ function Footer() {
 
       {/* WhatsApp Button */}
 
-      <a
-        href={whatsappLink}
-        className="whatsapp-float"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i className="fa-brands fa-whatsapp"></i>
-      </a>
+      {!isDashboard && (
+        <a
+          href={whatsappLink}
+          className="whatsapp-float"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-whatsapp"></i>
+        </a>
+      )}
 
       {/* 🔝 SCROLL BUTTON */}
-      {showBtn && (
+      {showBtn && !isDashboard && (
         <button className="scroll-top-btn" onClick={scrollToTop}>
           ↑
         </button>

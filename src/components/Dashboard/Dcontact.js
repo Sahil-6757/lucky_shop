@@ -8,14 +8,14 @@ import groovyWalkAnimation from "./Animation - 1726914106175.json";
 function Dcontact() {
   const [Contact, setContact] = useState();
   async function getData() {
-    axios.get("https://lucky-shop-backend.onrender.com").then((resp) => {
+    axios.get(`${process.env.REACT_APP_API_URL}`).then((resp) => {
       setContact(resp.data);
     });
   }
 
   const handleDelete = (item) => {
     try {
-      axios.delete(`https://lucky-shop-backend.onrender.com/delete/${item}`).then((resp) => {
+      axios.delete(`${process.env.REACT_APP_API_URL}/delete/${item}`).then((resp) => {
         if (resp.data.message === "Deleted") {
           toast.success("Deleted Successfully", {
             autoClose: 1000,
@@ -36,51 +36,56 @@ function Dcontact() {
   }, []);
 
   return (
-    <>
-
-      <table className="container contact-table table ">
-        <thead>
-          <tr>
-            <th scope="col">Sr.no</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Message</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Contact ? (
-            Contact.map((data, index) => {
-              return (
-                <tr>
-                  <th scope="row" key={index}>
-                    {index + 1}
-                  </th>
-                  <td>{data.name} </td>
-                  <td>{data.email}</td>
-                  <td>{data.message}</td>
-                  <td>
-                    <input
-                      type="button"
-                      onClick={() => handleDelete(data._id)}
-                      value="Delete"
-                      className="btn btn-danger"
+    <div className="container-fluid py-4 px-2 px-md-4 dashboard-main">
+      <div className="table-responsive">
+        <table className="table contact-table">
+          <thead>
+            <tr>
+              <th scope="col">Sr.no</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Message</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Contact ? (
+              Contact.map((data, index) => {
+                return (
+                  <tr key={index}>
+                    <th scope="row">
+                      {index + 1}
+                    </th>
+                    <td>{data.name} </td>
+                    <td>{data.email}</td>
+                    <td>{data.message}</td>
+                    <td>
+                      <input
+                        type="button"
+                        onClick={() => handleDelete(data._id)}
+                        value="Delete"
+                        className="btn btn-danger"
                       />
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
-            <div className="loading">
-            <Lottie
-              style={{ marginBottom: "6rem" }}
-              animationData={groovyWalkAnimation}
-            />
-          </div>
-          )}
-        </tbody>
-      </table>
-    </>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center">
+                  <div className="d-flex justify-content-center align-items-center py-5">
+                    <Lottie
+                      style={{ height: "150px" }}
+                      animationData={groovyWalkAnimation}
+                    />
+                  </div>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 

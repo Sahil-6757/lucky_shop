@@ -8,7 +8,7 @@ function Duser() {
   const [User, setUser] = useState();
 
   async function getData() {
-    axios.get("https://lucky-shop-backend.onrender.com/user").then((resp) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/user`).then((resp) => {
       setUser(resp.data);
       console.log(User);
     });
@@ -17,7 +17,7 @@ function Duser() {
   const handleDelete = (index) => {
     try {
       axios
-        .delete(`https://lucky-shop-backend.onrender.com/userDelete/${index}`)
+        .delete(`${process.env.REACT_APP_API_URL}/userDelete/${index}`)
         .then((resp) => {
           if (resp.data.message === "Deleted") {
             toast.success("Deleted Successfully", {
@@ -39,53 +39,56 @@ function Duser() {
   }, []);
 
   return (
-    <>
-      <table className="container user-table table">
-        <thead>
-          <tr>
-            <th className="col text-center">Sr.no</th>
-            <th className="col text-center">Name</th>
-            <th className="col text-center">Email</th>
-            <th className="col text-center">Password</th>
-            <th className="col text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {User ? (
-            User.map((value, index) => {
-              return (
-                <tr>
-                  <th className="text-center" scope="row" key={index}>
-                    {index + 1}
-                  </th>
-                  <td className="text-center">{value.name} </td>
-                  <td className="text-center">{value.email}</td>
-                  <td className="text-center">{value.password}</td>
-                  <td className="text-center">
-                    <input
-                      type="button"
-                      value="Delete"
-                      onClick={() => handleDelete(value._id)}
-                      className="btn btn-danger"
+    <div className="container-fluid py-4 px-2 px-md-4 dashboard-main">
+      <div className="table-responsive">
+        <table className="table user-table">
+          <thead>
+            <tr>
+              <th className="col text-center">Sr.no</th>
+              <th className="col text-center">Name</th>
+              <th className="col text-center">Email</th>
+              <th className="col text-center">Password</th>
+              <th className="col text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {User ? (
+              User.map((value, index) => {
+                return (
+                  <tr key={index}>
+                    <th className="text-center" scope="row">
+                      {index + 1}
+                    </th>
+                    <td className="text-center">{value.name} </td>
+                    <td className="text-center">{value.email}</td>
+                    <td className="text-center">{value.password}</td>
+                    <td className="text-center">
+                      <input
+                        type="button"
+                        value="Delete"
+                        onClick={() => handleDelete(value._id)}
+                        className="btn btn-danger"
+                      />
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center">
+                  <div className="d-flex justify-content-center align-items-center py-5">
+                    <Lottie
+                      style={{ height: "150px" }}
+                      animationData={groovyWalkAnimation}
                     />
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
-            <div className="loading">
-              <div className="sub-loading">
-
-              <Lottie
-                style={{ marginBottom: "6rem" }}
-                animationData={groovyWalkAnimation}
-              />
-              </div>
-            </div>
-          )}
-        </tbody>
-      </table>
-    </>
+                  </div>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 

@@ -4,13 +4,9 @@ import "./Dashboard.css";
 import { toast } from "react-toastify";
 
 function Dorder() {
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-
   const [Order, setOrder] = useState([]);
   const getData = () => {
-    axios.get("https://lucky-shop-backend.onrender.com/order").then((resp) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/order`).then((resp) => {
       console.log(resp.data);
       setOrder(resp.data);
     });
@@ -19,36 +15,32 @@ function Dorder() {
     getData();
   }, []);
 
-  const rows = Order.map((value) => {
-    createData(value.name, value.email);
-  });
-
   const handleStatusChange = async (id, status) => {
-  try {
-    await axios.put(
-      `https://lucky-shop-backend.onrender.com/updateOrderStatus/${id}`,
-      { status }
-    );
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/updateOrderStatus/${id}`,
+        { status }
+      );
 
-    toast.success(`Order marked as ${status}`, {
-      position: "top-center",
-      autoClose: 1000,
-    });
+      toast.success(`Order marked as ${status}`, {
+        position: "top-center",
+        autoClose: 1000,
+      });
 
-    getData(); // refresh
-  } catch (error) {
-    console.log(error);
-    toast.error("Failed to update status");
-  }
-};
+      getData(); // refresh
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to update status");
+    }
+  };
 
   const handleDelete = (e, name) => {
     let ask = window.confirm(
-      `Are you sure you want to delete order of ${name}?`,
+      `Are you sure you want to delete order of ${name}?`
     );
     if (!ask) return;
     axios
-      .delete(`https://lucky-shop-backend.onrender.com/delete-order/${e}`)
+      .delete(`${process.env.REACT_APP_API_URL}/delete-order/${e}`)
       .then((resp) => {
         toast.success("Order Deleted Successfully", {
           autoClose: 1000,
@@ -59,9 +51,9 @@ function Dorder() {
   };
 
   return (
-    <>
-      <div className="order-table">
-        <table className=" table container table-hover">
+    <div className="container-fluid py-4 px-2 px-md-4 dashboard-main">
+      <div className="table-responsive">
+        <table className="table table-hover">
           <thead>
             <tr className="text-center">
               <th scope="col" style={{ textAlign: "left" }}>
@@ -88,110 +80,62 @@ function Dorder() {
               <th scope="col" style={{ textAlign: "left" }}>
                 Status
               </th>
+              <th scope="col" style={{ textAlign: "left" }}>
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody>
-            {/* <TableContainer className="mx-2" component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Address&nbsp;</TableCell>
-            <TableCell align="right">Mobile&nbsp;</TableCell>
-            <TableCell align="right">Items&nbsp;</TableCell>
-            <TableCell align="right">Total&nbsp;</TableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-            
-            
-            
-            
-            {Order.map((row) => (
-              <TableRow
-            key={row.name}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              
-            <TableCell component="th" scope="row">
-            {row.name}
-              </TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.address}</TableCell>
-              <TableCell align="right">{row.mobile}</TableCell>
-              <TableCell align="right">{row.items.map((value)=>{
-                return(
-                  <>
-                  <p>Item Name = {value.name}</p> 
-                  <p>Item rate = {value.rate}</p> 
-                  
-                  </>
-                  
-                  )
-                  })}</TableCell>
-                  <TableCell align="right">{row.total}</TableCell>
-                  </TableRow>
-                  ))}
-        </TableBody>
-        </Table>
-    </TableContainer> */}
-
             {Order.map((value, index) => {
               return (
-                <tr key={index + 1}>
+                <tr key={value._id || index}>
                   <th scope="row">{index + 1}</th>
                   <td style={{ textAlign: "left" }}>{value.name}</td>
                   <td style={{ textAlign: "left" }}>{value.email}</td>
                   <td style={{ textAlign: "left" }}>{value.address}</td>
                   <td style={{ textAlign: "left" }}>{value.mobile}</td>
                   <td>
-                    {value.items.map((value, index) => {
+                    {value.items.map((itemVal, idx) => {
                       return (
-                        <>
-                          <li
-                            key={index + 1}
-                            style={{
-                              listStyle: "none",
-                              textAlign: "left",
-                              marginBottom: "5px",
-                              width: "200px",
-                            }}
-                          >
-                            {value.name} : {value.rate} * {value.count}
-                          </li>
-                        </>
+                        <li
+                          key={idx}
+                          style={{
+                            listStyle: "none",
+                            textAlign: "left",
+                            marginBottom: "5px",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {itemVal.name} : {itemVal.rate} * {itemVal.count}
+                        </li>
                       );
                     })}
                   </td>
                   <td>{value.total}</td>
                   <td>
-      {
-  (value.status === "Pending") ? (
-    <>
-      <button
-        className="btn btn-success btn-sm mx-1"
-        onClick={() => handleStatusChange(value._id, "Delivered")}
-      >
-        Deliver
-      </button>
+                    {value.status === "Pending" ? (
+                      <>
+                        <button
+                          className="btn btn-success btn-sm mx-1"
+                          onClick={() => handleStatusChange(value._id, "Delivered")}
+                        >
+                          Deliver
+                        </button>
 
-      <button
-        className="btn btn-warning btn-sm mx-1"
-        onClick={() => handleStatusChange(value._id, "Cancelled")}
-      >
-        Cancel
-      </button>
-    </>
-  ) : (
-    <h6>Status: {value.status}</h6>
-  )
-      }              
- 
-</td>
+                        <button
+                          className="btn btn-warning btn-sm mx-1"
+                          onClick={() => handleStatusChange(value._id, "Cancelled")}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <h6>Status: {value.status}</h6>
+                    )}
+                  </td>
                   <td>
                     <i
-                      class="fa-solid fa-trash text-danger"
+                      className="fa-solid fa-trash text-danger"
                       onClick={() => handleDelete(value._id, value.name)}
                     ></i>
                   </td>
@@ -201,7 +145,7 @@ function Dorder() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
 
