@@ -982,6 +982,10 @@
     margin-left: 2rem;
   }
 
+  .navbar-middle {
+    display: none !important;
+  }
+
   .google-map {
     width: 100%;
     /* position: relative; */
@@ -989,7 +993,7 @@
   }
 
   .login-btn {
-    /* display: none; */
+    display: none !important;
     height: 32px;
     margin-top: 3px !important;
     font-size: 12px;
@@ -1057,7 +1061,7 @@
     width: 100% !important;
   }
 
-  .card {
+  .subDirector .card {
     width: 10rem;
     height: auto;
   }

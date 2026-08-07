@@ -45,9 +45,17 @@ function DNavbar() {
             <i className="fa-icon fa-solid fa-money-bill "></i>
             <span className="nav-title">Transactions</span>
           </Link>
+          <Link to={"dAccount"} className="link my-4">
+            <i className="fa-icon fa-solid fa-building-columns"></i>
+            <span className="nav-title">Bank Accounts</span>
+          </Link>
           <Link to={"dVechicalBill"} className="link my-4">
             <i className="fa-icon fa-solid fa-truck "></i>
             <span className="nav-title">Vehicals Bill</span>
+          </Link>
+          <Link to={"dExpenses"} className="link my-4">
+            <i className="fa-icon fa-solid fa-receipt "></i>
+            <span className="nav-title">Expenses</span>
           </Link>
         </ul>
       </div>

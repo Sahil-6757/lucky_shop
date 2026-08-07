@@ -193,18 +193,27 @@ ul .link {
     border: 1px solid rgba(226, 232, 240, 0.8) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
     border-radius: 24px !important;
-    padding: 0 10px !important;
+    padding: 0 15px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+  }
+
+  .left-panel::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari/Opera */
   }
 
   .left-panel ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start !important;
     align-items: center;
     margin: 0;
     padding: 12px 0;
-    width: 100%;
+    width: max-content !important;
+    min-width: 100%;
     list-style: none;
+    gap: 24px !important;
   }
 
   .left-panel ul .link {
@@ -216,6 +225,7 @@ ul .link {
     text-decoration: none;
     color: #475569;
     font-size: 0.85rem;
+    flex-shrink: 0 !important;
   }
 
   .left-panel ul .nav-title {
@@ -326,6 +336,10 @@ ul .link {
 
 .gradient-blue {
   background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
 }
 
 .gradient-rose {
@@ -533,5 +547,96 @@ ul .link {
   .payment-modal-form {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+/* Available Balance Styles */
+.gradient-amber {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.dashboard-top-header {
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  padding: 0.75rem 2rem;
+  flex-shrink: 0;
+}
+
+.header-shop-title {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  color: #1e293b;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.available-balance-widget {
+  background-color: #fcfbf7;
+  border-color: #fef3c7 !important;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.available-balance-widget:hover {
+  background-color: #fefdf0;
+  border-color: #fcd34d !important;
+  transform: translateY(-1px);
+}
+
+.balance-icon-wrapper {
+  background-color: #fef3c7 !important;
+  color: #d97706 !important;
+  width: 36px;
+  height: 36px;
+}
+
+.balance-breakdown-popover {
+  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  background: #ffffff;
+}
+
+.fs-7 {
+  font-size: 0.85rem !important;
+}
+
+@keyframes popoverFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .dashboard-top-header {
+    padding: 0.5rem 1rem !important;
+  }
+  .header-shop-title {
+    font-size: 1.1rem !important;
+  }
+  .available-balance-widget {
+    padding: 0.25rem 0.75rem !important;
+  }
+  .balance-value {
+    font-size: 0.85rem !important;
+  }
+  .balance-label {
+    font-size: 0.55rem !important;
+  }
+  .balance-icon-wrapper {
+    width: 28px !important;
+    height: 28px !important;
+    padding: 4px !important;
+  }
+  .balance-icon-wrapper i {
+    font-size: 0.75rem !important;
   }
 }

@@ -1,21 +1,18 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../App.css";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import { useRef, useState } from "react";
 import siteIcon from "../assets/siteIcon.jpg";
 function Navbar() {
+  const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef();
   const { login, setLogin } = useContext(AuthContext);
   const { count, setCount } = useContext(AuthContext);
-  // function countItem() {
-  //   let items = JSON.parse(localStorage.getItem("Items"));
-  //   setcount(items.length);
-  // }
 
   const handleLogout = () => {
     toast.success("Logout Successfully", {
@@ -36,6 +33,7 @@ function Navbar() {
       behavior: "smooth",
     });
   };
+
   useEffect(() => {
     try {
       const handleClickOutside = (e) => {

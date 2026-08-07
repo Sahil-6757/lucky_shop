@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Dashboard.css";
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, useMediaQuery, useTheme } from "@mui/material";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { AuthContext } from "../../context/AuthContext";
+
 function Dhome() {
   const [rows, setrows] = useState([]);
   const [data, setData] = useState([]);
@@ -37,12 +39,13 @@ function Dhome() {
     receivedBy: "",
     mode: "Cash"
   });
+  const [settlementSearchQuery, setSettlementSearchQuery] = useState("");
+  const [settlementTab, setSettlementTab] = useState("all");
   const date = new Date();
-  let datee = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
-
-  let Datee = `${year}-0${month + 1}-${datee}`;
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const Datee = `${year}-${month}-${day}`;
   const [todayDate, setdate] = useState({
     date: Datee,
   });
@@ -176,7 +179,8 @@ function Dhome() {
       paid: value.paid !== undefined ? value.paid : 0,
       pending: value.pending !== undefined ? value.pending : (value.total || 0),
       receivedBy: "",
-      mode: "Cash"
+      mode: "Cash",
+      payments: value.payments || []
     });
     setTotal(value.total || 0);
     setId(value._id);
@@ -237,10 +241,18 @@ function Dhome() {
   const handleSettlePending = (item) => {
     let result = window.confirm(`Are you sure you want to settle/clear the pending amount for ${item.name}?`);
     if (result) {
+      const pendingAmt = item.pending !== undefined ? Number(item.pending) : (Number(item.total) - Number(item.paid || 0));
+      const newPmt = {
+        amount: pendingAmt,
+        date: new Date().toISOString().split('T')[0],
+        receivedBy: "Admin",
+        mode: "Cash"
+      };
       const updatedData = {
         ...item,
         paid: Number(item.total) || 0,
-        pending: 0
+        pending: 0,
+        payments: [...(item.payments || []), newPmt]
       };
       axios
         .put(`${process.env.REACT_APP_API_URL}/sales-edit/${item._id}`, updatedData)
@@ -509,6 +521,55 @@ function Dhome() {
     );
   });
 
+  const allSettledPayments = rows.flatMap((row) => {
+    return (row.payments || []).map((pmt) => ({
+      _id: row._id,
+      customerName: row.name || "Unknown",
+      date: pmt.date || row.date,
+      amount: Number(pmt.amount) || 0,
+      receivedBy: pmt.receivedBy || "Admin",
+      mode: pmt.mode || "Cash",
+      paymentId: pmt._id || Math.random().toString()
+    }));
+  });
+
+  const sortedSettledPayments = [...allSettledPayments].sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  const filteredSettledPayments = sortedSettledPayments.filter((pmt) => {
+    if (settlementTab !== "all" && pmt.mode !== settlementTab) {
+      return false;
+    }
+    if (!settlementSearchQuery) return true;
+    const term = settlementSearchQuery.toLowerCase();
+    return (
+      pmt.customerName.toLowerCase().includes(term) ||
+      pmt.date.toLowerCase().includes(term) ||
+      pmt.receivedBy.toLowerCase().includes(term) ||
+      pmt.mode.toLowerCase().includes(term) ||
+      pmt.amount.toString().includes(term)
+    );
+  });
+
+  const totalCashSettled = allSettledPayments
+    .filter((pmt) => pmt.mode === "Cash")
+    .reduce((sum, pmt) => sum + pmt.amount, 0);
+
+  const totalOnlineSettled = allSettledPayments
+    .filter((pmt) => pmt.mode === "Online")
+    .reduce((sum, pmt) => sum + pmt.amount, 0);
+
+  const totalAllSettled = totalCashSettled + totalOnlineSettled;
+
+  const todayCashCollected = allSettledPayments
+    .filter((pmt) => pmt.date === Datee && pmt.mode === "Cash")
+    .reduce((sum, pmt) => sum + pmt.amount, 0);
+
+  const todayOnlineCollected = allSettledPayments
+    .filter((pmt) => pmt.date === Datee && pmt.mode === "Online")
+    .reduce((sum, pmt) => sum + pmt.amount, 0);
+
   return (
     <div className="container-fluid py-4 px-2 px-md-4 dashboard-main">
       <div className="d-flex justify-content-between align-items-center mb-4 header-section">
@@ -676,16 +737,31 @@ function Dhome() {
               </div>
             </div>
 
-            {/* Today's Cash Paid Card */}
+            {/* Today's Cash Collected Card */}
             <div className="col-md-6 col-lg-12">
               <div className="card border-0 shadow-sm stat-card gradient-blue p-4 text-white">
                 <div className="d-flex justify-content-between align-items-start">
                   <div>
-                    <span className="fs-6 fw-bold opacity-80 uppercase tracking-wider">Today's Cash Paid</span>
-                    <h2 className="display-6 fw-bold mt-2 mb-0">Rs. {todayPaid || 0}</h2>
+                    <span className="fs-6 fw-bold opacity-80 uppercase tracking-wider">Today's Cash Collected</span>
+                    <h2 className="display-6 fw-bold mt-2 mb-0">Rs. {todayCashCollected || 0}</h2>
                   </div>
                   <div className="icon-wrapper bg-white bg-opacity-20 rounded-3 p-3">
                     <i className="fa-solid fa-wallet fs-2 text-white"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Today's Online Collected Card */}
+            <div className="col-md-6 col-lg-12">
+              <div className="card border-0 shadow-sm stat-card gradient-purple p-4 text-white">
+                <div className="d-flex justify-content-between align-items-start">
+                  <div>
+                    <span className="fs-6 fw-bold opacity-80 uppercase tracking-wider">Today's Online Collected</span>
+                    <h2 className="display-6 fw-bold mt-2 mb-0">Rs. {todayOnlineCollected || 0}</h2>
+                  </div>
+                  <div className="icon-wrapper bg-white bg-opacity-20 rounded-3 p-3">
+                    <i className="fa-solid fa-globe fs-2 text-white"></i>
                   </div>
                 </div>
               </div>
@@ -971,6 +1047,124 @@ function Dhome() {
           </div>
         </div>
       </div>
+
+      {/* Payment Settlements Table Section */}
+      <div className="card border-0 shadow-sm table-card mt-4">
+        <div className="card-header bg-white py-3 border-bottom border-light d-flex flex-column flex-md-row justify-content-md-between align-items-md-center align-items-stretch gap-3">
+          <div>
+            <h5 className="m-0 fw-bold text-dark text-center text-md-start">Payment Settlements History</h5>
+            <p className="text-secondary m-0 fs-7 text-center text-md-start">View payments settled via Cash and Online modes</p>
+          </div>
+
+          <div className="d-flex align-items-center gap-2" style={{ maxWidth: '350px', flex: '1' }}>
+            <input
+              type="text"
+              className="form-control modern-input py-1 px-3"
+              placeholder="🔍 Search settlements..."
+              value={settlementSearchQuery}
+              onChange={(e) => setSettlementSearchQuery(e.target.value)}
+            />
+            {settlementSearchQuery && (
+              <button
+                className="btn btn-outline-secondary btn-sm"
+                onClick={() => setSettlementSearchQuery("")}
+                style={{ borderRadius: '8px' }}
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Tab Selection & Mini Stats */}
+        <div className="p-3 bg-light border-bottom d-flex flex-column flex-md-row justify-content-between align-items-stretch align-items-md-center gap-3">
+          {/* Custom segment control tabs */}
+          <div className="d-flex bg-white p-1 rounded-3 border align-self-start" style={{ gap: '2px' }}>
+            <button
+              onClick={() => setSettlementTab("all")}
+              className={`btn btn-sm border-0 px-3 py-1.5 fw-semibold ${settlementTab === 'all' ? 'bg-primary text-white shadow-sm' : 'text-secondary bg-transparent'}`}
+              style={{ borderRadius: '6px', fontSize: '0.85rem' }}
+            >
+              All ({allSettledPayments.length})
+            </button>
+            <button
+              onClick={() => setSettlementTab("Cash")}
+              className={`btn btn-sm border-0 px-3 py-1.5 fw-semibold ${settlementTab === 'Cash' ? 'bg-success text-white shadow-sm' : 'text-secondary bg-transparent'}`}
+              style={{ borderRadius: '6px', fontSize: '0.85rem' }}
+            >
+              💵 Cash ({allSettledPayments.filter(p => p.mode === 'Cash').length})
+            </button>
+            <button
+              onClick={() => setSettlementTab("Online")}
+              className={`btn btn-sm border-0 px-3 py-1.5 fw-semibold ${settlementTab === 'Online' ? 'bg-info text-white shadow-sm' : 'text-secondary bg-transparent'}`}
+              style={{ borderRadius: '6px', fontSize: '0.85rem' }}
+            >
+              🌐 Online ({allSettledPayments.filter(p => p.mode === 'Online').length})
+            </button>
+          </div>
+
+          {/* Quick Metrics */}
+          <div className="d-flex flex-wrap gap-3 align-items-center">
+            <div className="px-3 py-1.5 rounded-3 bg-success bg-opacity-10 text-success border border-success border-opacity-20 d-flex align-items-center gap-2">
+              <span className="fs-7 fw-semibold text-secondary">Total Cash:</span>
+              <strong className="fs-6">Rs. {totalCashSettled}</strong>
+            </div>
+            <div className="px-3 py-1.5 rounded-3 bg-info bg-opacity-10 text-info border border-info border-opacity-20 d-flex align-items-center gap-2">
+              <span className="fs-7 fw-semibold text-secondary">Total Online:</span>
+              <strong className="fs-6">Rs. {totalOnlineSettled}</strong>
+            </div>
+            <div className="px-3 py-1.5 rounded-3 bg-primary bg-opacity-10 text-primary border border-primary border-opacity-20 d-flex align-items-center gap-2">
+              <span className="fs-7 fw-semibold text-secondary">Combined:</span>
+              <strong className="fs-6">Rs. {totalAllSettled}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div className="card-body p-0">
+          <div className="table-responsive" style={{ maxHeight: '420px', overflowY: 'auto' }}>
+            <table className="table table-hover align-middle mb-0 modern-table">
+              <thead className="table-light sticky-top">
+                <tr>
+                  <th scope="col" className="ps-4">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col" className="text-center">Payment Mode</th>
+                  <th scope="col">Received By</th>
+                  <th scope="col" className="text-end pe-4">Settled Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredSettledPayments.map((pmt, index) => (
+                  <tr
+                    key={pmt.paymentId}
+                    className="table-row-item"
+                    style={{ transition: 'background-color 0.2s' }}
+                  >
+                    <th scope="row" className="ps-4 text-secondary">{index + 1}</th>
+                    <td>{pmt.date}</td>
+                    <td className="fw-semibold text-dark">{pmt.customerName}</td>
+                    <td className="text-center">
+                      <span className={`badge ${pmt.mode === 'Online' ? 'bg-primary' : 'bg-success'} bg-opacity-10 text-opacity-100 ${pmt.mode === 'Online' ? 'text-primary' : 'text-success'} px-3 py-1.5 rounded-pill fw-bold`}>
+                        {pmt.mode === 'Online' ? '🌐 Online' : '💵 Cash'}
+                      </span>
+                    </td>
+                    <td>{pmt.receivedBy}</td>
+                    <td className="text-end fw-bold text-success pe-4">Rs. {pmt.amount}</td>
+                  </tr>
+                ))}
+                {filteredSettledPayments.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="text-center py-4 text-secondary">
+                      No settlement records found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <Outlet />
 
       {/* Payment History & Installment Management Modal */}

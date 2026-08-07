@@ -42,39 +42,6 @@ function Dsetting() {
     };
   };
 
-  const transactionsForTotals = searchDate
-    ? allTransactions.filter((t) => t.date === searchDate)
-    : allTransactions.filter((t) => {
-      if (!t.date) return false;
-      const now = new Date();
-      const currentYearMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-      return t.date.startsWith(currentYearMonth);
-    });
-
-  const receivedAmount = () => {
-    return transactionsForTotals
-      .filter((vale) => vale.type === "recieved")
-      .reduce((sum, vale) => sum + Number(vale.amount || 0), 0);
-  };
-
-  const paidAmount = () => {
-    return transactionsForTotals
-      .filter((vale) => vale.type === "paid")
-      .reduce((sum, vale) => sum + Number(vale.amount || 0), 0);
-  };
-
-  const getTotalsLabel = () => {
-    if (searchDate) {
-      return `Selected Date: ${searchDate}`;
-    }
-    const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    const now = new Date();
-    return `${months[now.getMonth()]} ${now.getFullYear()} (Current Month)`;
-  };
-
   const filteredTransactions = allTransactions.filter((transaction) => {
     // 1. Filter by Date if selected
     if (searchDate && transaction.date !== searchDate) {
@@ -94,6 +61,28 @@ function Dsetting() {
 
     return true;
   });
+
+  const receivedAmount = () => {
+    return filteredTransactions
+      .filter((vale) => vale.type === "recieved")
+      .reduce((sum, vale) => sum + Number(vale.amount || 0), 0);
+  };
+
+  const paidAmount = () => {
+    return filteredTransactions
+      .filter((vale) => vale.type === "paid")
+      .reduce((sum, vale) => sum + Number(vale.amount || 0), 0);
+  };
+
+  const getTotalsLabel = () => {
+    if (searchDate) {
+      return `Selected Date: ${searchDate}`;
+    }
+    if (searchQuery) {
+      return `Search: "${searchQuery}"`;
+    }
+    return "All Records";
+  };
 
   const getTransaction = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/getTransaction`).then((resp) => {
@@ -268,8 +257,8 @@ function Dsetting() {
             </button>
           </div>
         </div>
-        <div className="table-responsive">
-          <table className="table">
+        <div className="table-responsive" style={{ maxHeight: '420px', overflowY: 'auto' }}>
+          <table className="table table-hover align-middle mb-0 modern-table">
             <thead>
               <tr>
                 <th>Name</th>

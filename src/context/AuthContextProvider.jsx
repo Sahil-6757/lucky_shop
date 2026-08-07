@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
+import axios from "axios";
 
 export const AuthContextProvider = (props) => {
   const [login, setLogin] = useState(false);
@@ -7,7 +8,16 @@ export const AuthContextProvider = (props) => {
   const [itemCounter, setItemCounter] = useState(0);
 
   return (
-    <AuthContext.Provider value={{ login, setLogin,count,setCount,itemCounter,setItemCounter }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        setLogin,
+        count,
+        setCount,
+        itemCounter,
+        setItemCounter,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

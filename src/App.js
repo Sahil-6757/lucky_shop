@@ -1,7 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Crousel from "./components/Crousel";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes, Outlet, useLocation } from "react-router-dom";
 import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +17,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Dsetting from "./components/Dashboard/Dsetting";
+import Dexpenses from "./components/Dashboard/Dexpenses";
 import { useEffect } from "react";
 import { AuthContextProvider } from "./context/AuthContextProvider";
 import Aboutus from "./Pages/Aboutus";
@@ -24,7 +25,11 @@ import Footer from "./components/Footer";
 import Product from "./Pages/Product";
 import Profile from "./components/Profile";
 import DVechical from "./components/Dashboard/Dvehical";
+import Daccount from "./components/Dashboard/Daccount";
 function App() {
+  const location = useLocation();
+  const isDashboard = location.pathname.toLowerCase().startsWith("/dashboard");
+
   useEffect(() => {
     const token = localStorage.getItem("login");
     if (token) {
@@ -37,7 +42,7 @@ function App() {
         <ToastContainer
           position="bottom-center"
         />
-        <Navbar />
+        {!isDashboard && <Navbar />}
         <Routes>
           <Route Component={Crousel} index="/" />
           <Route Component={Login} path="/login" />
@@ -56,9 +61,11 @@ function App() {
             <Route Component={Duser} path="dUser" />
             <Route Component={Dsetting} path="dSetting" />
             <Route Component={DVechical} path="dVechicalBill" />
+            <Route Component={Dexpenses} path="dExpenses" />
+            <Route Component={Daccount} path="dAccount" />
           </Route>
         </Routes>
-        <Footer />
+        {!isDashboard && <Footer />}
       </AuthContextProvider>
     </>
   );
