@@ -6,10 +6,9 @@ body {
 }
 
 .left-panel {
-  top: 0;
-  position: relative;
-  border-radius: 8px;
-  min-width: 220px;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
   background-color: rgb(177, 255, 161);
 }
 
@@ -196,11 +195,13 @@ ul .link {
     padding: 0 15px !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
   }
 
   .left-panel::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+    display: none;
+    /* Hide scrollbar for Chrome/Safari/Opera */
   }
 
   .left-panel ul {
@@ -476,6 +477,7 @@ ul .link {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -544,6 +546,7 @@ ul .link {
     padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
   }
+
   .payment-modal-form {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -609,6 +612,7 @@ ul .link {
     opacity: 0;
     transform: scale(0.95) translateY(-5px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -619,23 +623,29 @@ ul .link {
   .dashboard-top-header {
     padding: 0.5rem 1rem !important;
   }
+
   .header-shop-title {
     font-size: 1.1rem !important;
   }
+
   .available-balance-widget {
     padding: 0.25rem 0.75rem !important;
   }
+
   .balance-value {
     font-size: 0.85rem !important;
   }
+
   .balance-label {
     font-size: 0.55rem !important;
   }
+
   .balance-icon-wrapper {
     width: 28px !important;
     height: 28px !important;
     padding: 4px !important;
   }
+
   .balance-icon-wrapper i {
     font-size: 0.75rem !important;
   }

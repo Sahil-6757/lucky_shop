@@ -17,9 +17,9 @@ function Cart() {
   }, []);
 
   const removeBtn = (index) => {
-   const output =  window.confirm("Are you sure you want to remove this item?") &&
+    const output = window.confirm("Are you sure you want to remove this item?") &&
       navigator.vibrate(100);
-      console.log(output)
+    console.log(output)
     if (!output) {
       return;
     }
@@ -57,7 +57,7 @@ function Cart() {
             </div>
 
             <hr />
-            {Items.length === 0 ? (
+            {Items == null ? (
               <p className="text-center text-muted">No Data Found</p>
             ) : (
               Items.map((value, index) => {
@@ -87,7 +87,7 @@ function Cart() {
                         className="btn btn-danger remove-btn"
                         onClick={() => removeBtn(index)}
                       >
-                        <i className="fa-solid fa-trash"></i> 
+                        <i className="fa-solid fa-trash"></i>
                       </button>
                     </div>
                   </div>

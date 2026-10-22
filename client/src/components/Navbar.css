@@ -1,0 +1,620 @@
+/* ==========================================================================
+   LUCKY FRUITS - FRESH EMERALD & FROSTED GLASS NAVBAR THEME
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-blur: 16px;
+  --nav-border: rgba(16, 185, 129, 0.18);
+  --nav-shadow: 0 4px 24px -2px rgba(16, 185, 129, 0.1), 0 2px 8px -1px rgba(0, 0, 0, 0.04);
+  
+  --emerald-primary: #10b981;
+  --emerald-hover: #059669;
+  --emerald-dark: #064e3b;
+  --emerald-deep: #065f46;
+  --mint-light: #ecfdf5;
+  --mint-border: #a7f3d0;
+  --mint-hover: rgba(16, 185, 129, 0.12);
+
+  --nav-font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --nav-font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar Main Wrapper
+   -------------------------------------------------------------------------- */
+.lucky-navbar-wrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100% !important;
+  height: 4.25rem !important;
+  background: var(--nav-bg) !important;
+  backdrop-filter: blur(var(--nav-blur)) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(180%) !important;
+  border-bottom: 1px solid var(--nav-border) !important;
+  box-shadow: var(--nav-shadow) !important;
+  z-index: 9999 !important;
+  padding: 0 2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  transition: all 0.3s ease;
+  overflow: visible !important;
+  opacity: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Brand / Logo Area
+   -------------------------------------------------------------------------- */
+.lucky-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none !important;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lucky-brand-link:hover {
+  transform: scale(1.02);
+}
+
+.lucky-brand-logo-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lucky-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid var(--mint-border);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lucky-brand-link:hover .lucky-brand-icon {
+  transform: rotate(6deg) scale(1.08);
+}
+
+.lucky-brand-text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+.lucky-brand-title {
+  font-family: var(--nav-font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #065f46 0%, #059669 45%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lucky-brand-title .brand-accent {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lucky-brand-tagline {
+  font-family: var(--nav-font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #059669;
+  opacity: 0.9;
+  margin-top: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   Center Navigation Island (Pills)
+   -------------------------------------------------------------------------- */
+.lucky-nav-center {
+  display: flex;
+  align-items: center;
+  background: rgba(236, 253, 245, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(167, 243, 208, 0.7);
+  border-radius: 9999px;
+  padding: 4px 6px;
+  gap: 4px;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.06);
+}
+
+.lucky-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 7px 18px;
+  border-radius: 9999px;
+  font-family: var(--nav-font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--emerald-dark);
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  white-space: nowrap;
+}
+
+.lucky-nav-pill i {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  transition: transform 0.25s ease;
+}
+
+.lucky-nav-pill:hover {
+  color: var(--emerald-hover);
+  background: var(--mint-hover);
+  transform: translateY(-1px);
+}
+
+.lucky-nav-pill:hover i {
+  transform: scale(1.15);
+}
+
+.lucky-nav-pill.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.38);
+}
+
+.lucky-nav-pill.active i {
+  opacity: 1;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Right Action Elements
+   -------------------------------------------------------------------------- */
+.lucky-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Circular icon buttons (Cart, User) */
+.lucky-action-circle-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--mint-light);
+  border: 1px solid var(--mint-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald-deep);
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  outline: none;
+}
+
+.lucky-action-circle-btn i {
+  font-size: 1.05rem;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lucky-action-circle-btn:hover {
+  background: var(--emerald-primary);
+  border-color: var(--emerald-primary);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.32);
+}
+
+.lucky-action-circle-btn:hover i {
+  transform: scale(1.15);
+}
+
+.lucky-action-circle-btn.active {
+  background: var(--emerald-primary);
+  border-color: var(--emerald-primary);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Cart Badge */
+.lucky-cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  font-family: var(--nav-font-body);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.45);
+  line-height: 1;
+  pointer-events: none;
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Primary CTA Button (Login / Logout) */
+.lucky-nav-cta {
+  font-family: var(--nav-font-heading);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.2px;
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.lucky-nav-cta.login-cta {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.lucky-nav-cta.login-cta:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.42);
+  transform: translateY(-2px);
+}
+
+.lucky-nav-cta.logout-cta {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626 !important;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.08);
+}
+
+.lucky-nav-cta.logout-cta:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.35);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Profile Dropdown Panel
+   -------------------------------------------------------------------------- */
+.lucky-profile-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.lucky-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 230px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 14px 35px -5px rgba(6, 78, 59, 0.18), 0 4px 10px rgba(0, 0, 0, 0.04);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10001;
+  animation: dropdownFadeDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.lucky-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 10px 10px;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  margin-bottom: 4px;
+}
+
+.lucky-dropdown-avatar {
+  font-size: 1.8rem;
+  color: var(--emerald-primary);
+}
+
+.lucky-dropdown-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.lucky-dropdown-user-name {
+  font-family: var(--nav-font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--emerald-dark);
+}
+
+.lucky-dropdown-user-role {
+  font-family: var(--nav-font-body);
+  font-size: 0.72rem;
+  color: #059669;
+  font-weight: 600;
+}
+
+.lucky-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-family: var(--nav-font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.lucky-dropdown-item i {
+  font-size: 0.95rem;
+  color: var(--emerald-deep);
+  width: 18px;
+  text-align: center;
+}
+
+.lucky-dropdown-item:hover {
+  background: var(--mint-light);
+  color: var(--emerald-dark);
+  transform: translateX(3px);
+}
+
+.lucky-dropdown-item:hover i {
+  color: var(--emerald-primary);
+}
+
+.lucky-dropdown-item.logout-item {
+  color: #dc2626;
+  border-top: 1px solid rgba(239, 68, 68, 0.12);
+  margin-top: 4px;
+  padding-top: 10px;
+}
+
+.lucky-dropdown-item.logout-item i {
+  color: #dc2626;
+}
+
+.lucky-dropdown-item.logout-item:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: #b91c1c;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Hamburger Toggle
+   -------------------------------------------------------------------------- */
+.lucky-mobile-toggle-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--mint-light);
+  border: 1px solid var(--mint-border);
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald-deep);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+  outline: none;
+}
+
+.lucky-mobile-toggle-btn:hover,
+.lucky-mobile-toggle-btn.open {
+  background: var(--emerald-primary);
+  border-color: var(--emerald-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Menu Drawer
+   -------------------------------------------------------------------------- */
+.lucky-mobile-menu-drawer {
+  position: fixed;
+  top: 4.8rem;
+  right: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 340px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -10px rgba(6, 78, 59, 0.25), 0 6px 15px rgba(0, 0, 0, 0.05);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10002;
+  animation: mobileMenuSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes mobileMenuSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.lucky-mobile-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-family: var(--nav-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.lucky-mobile-menu-link i {
+  font-size: 1.05rem;
+  color: var(--emerald-deep);
+  width: 22px;
+  text-align: center;
+}
+
+.lucky-mobile-menu-link:hover {
+  background: var(--mint-light);
+  color: var(--emerald-dark);
+  transform: translateX(4px);
+}
+
+.lucky-mobile-menu-link.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.32);
+}
+
+.lucky-mobile-menu-link.active i {
+  color: #ffffff;
+}
+
+.lucky-mobile-cart-badge {
+  margin-left: auto;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.lucky-mobile-menu-divider {
+  height: 1px;
+  background: rgba(16, 185, 129, 0.12);
+  margin: 6px 0;
+}
+
+.lucky-mobile-auth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  font-family: var(--nav-font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+  margin-top: 4px;
+}
+
+.lucky-mobile-auth-btn.login {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.lucky-mobile-auth-btn.logout {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626 !important;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .lucky-navbar-wrapper {
+    padding: 0 1.25rem !important;
+  }
+  .lucky-nav-center {
+    display: none !important;
+  }
+  .lucky-mobile-toggle-btn {
+    display: inline-flex !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .lucky-navbar-wrapper {
+    padding: 0 0.85rem !important;
+    height: 3.85rem !important;
+  }
+  .lucky-brand-tagline {
+    display: none;
+  }
+  .lucky-brand-title {
+    font-size: 1.25rem;
+  }
+  .lucky-brand-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .lucky-nav-cta {
+    display: none !important;
+  }
+  .lucky-action-circle-btn {
+    width: 36px;
+    height: 36px;
+  }
+}

@@ -1,30 +1,34 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../App.css";
+import "./Navbar.css";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
-import { useRef, useState } from "react";
 import siteIcon from "../assets/siteIcon.jpg";
+
 function Navbar() {
   const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const [menuOpen, setMenuOpen] = useState(false);
-  const dropdownRef = useRef();
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const { login, setLogin } = useContext(AuthContext);
-  const { count, setCount } = useContext(AuthContext);
+  const { count } = useContext(AuthContext);
 
   const handleLogout = () => {
     toast.success("Logout Successfully", {
       position: "bottom-center",
       autoClose: 1000,
     });
-    localStorage.setItem("Login", false);
+    localStorage.setItem("Login", "false");
     setLogin(false);
+    setDropdownOpen(false);
+    setMenuOpen(false);
   };
 
   const handleBars = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
+    setDropdownOpen(false);
   };
 
   const scrollTop = () => {
@@ -34,183 +38,330 @@ function Navbar() {
     });
   };
 
+  const isActive = (path) => {
+    if (path === "/" && location.pathname === "/") return true;
+    if (path !== "/" && location.pathname.toLowerCase().startsWith(path.toLowerCase())) return true;
+    return false;
+  };
+
   useEffect(() => {
     try {
       const handleClickOutside = (e) => {
         if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
           setDropdownOpen(false);
         }
+        if (
+          mobileMenuRef.current &&
+          !mobileMenuRef.current.contains(e.target) &&
+          !e.target.closest(".lucky-mobile-toggle-btn")
+        ) {
+          setMenuOpen(false);
+        }
       };
+
       document.addEventListener("mousedown", handleClickOutside);
       const userLogin = localStorage.getItem("Login");
       setLogin(userLogin === "true");
-      console.log(userLogin);
+
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
-    } catch (error) { }
-  }, []);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [setLogin]);
+
+  // Close menus on route change
+  useEffect(() => {
+    setMenuOpen(false);
+    setDropdownOpen(false);
+  }, [location.pathname]);
 
   return (
-    <>
-      <div className="navbar">
-        <a className="site-Title text-success" href="/" onClick={scrollTop}>
-          <Link
-            to={"/"}
-            className="nav-link active luckyFruits"
-            aria-current="page"
-          >
-            Lucky Fruits
-
-            <img src={siteIcon} alt="Site Icon" className="site-icon" />
-          </Link>
-        </a>
-        <div className="navbar-middle">
-          <a className="navbar-brand text-success" onClick={scrollTop}>
-            <Link
-              to={"/aboutus"}
-              className="nav-link active aboutus hover-link mx-2"
-              aria-current="page"
-            >
-              About us
-            </Link>
-          </a>
-
-          <a className="navbar-brand text-success" onClick={scrollTop}>
-            <Link
-              to={"/product"}
-              className="nav-link active aboutus hover-link mx-2"
-              aria-current="page"
-            >
-              Product
-            </Link>
-          </a>
-          <a className="navbar-brand text-success" onClick={scrollTop}>
-            <Link
-              to={"/contactus"}
-              className="nav-link active aboutus hover-link mx-2"
-              aria-current="page"
-            >
-              Contact us
-            </Link>
-          </a>
+    <header className="lucky-navbar-wrapper navbar">
+      {/* Brand & Logo */}
+      <Link to="/" className="lucky-brand-link" onClick={scrollTop}>
+        <div className="lucky-brand-logo-container">
+          <img src={siteIcon} alt="Lucky Fruits Logo" className="lucky-brand-icon" />
         </div>
-
-        <div className="profile-dropdown" ref={dropdownRef}>
-          {login ? (
-            <>
-              {dropdownOpen && (
-                <div className="dropdown-menu">
-                  <Link to="/dashboard" className="dropdown-item">
-                    Dashboard
-                  </Link>
-
-                  <Link to="/profile" className="dropdown-item">
-                    My Profile
-                  </Link>
-
-                  <div className="dropdown-item" onClick={handleLogout}>
-                    Logout
-                  </div>
-                </div>
-              )}
-            </>
-          ) : (
-            ""
-          )}
+        <div className="lucky-brand-text-block">
+          <span className="lucky-brand-title">
+            Lucky<span className="brand-accent">Fruits</span>
+          </span>
+          <span className="lucky-brand-tagline">Fresh & Organic</span>
         </div>
+      </Link>
 
-        <div className="Navbar-login">
-          <Link
-            to="/cart"
-            onClick={scrollTop}
-            className="cart-link-btn"
-            aria-label="Shopping Cart"
-          >
-            <i className="fa-solid fa-cart-shopping cart-icon align-center"></i>
-            <span className="cart-count">{count == null ? 0 : count}</span>
-          </Link>
-          <Link
-            to="/profile"
-            onClick={scrollTop}
-            className="fa-solid fa-user mx-3 cart-icon align-center"
-          ></Link>
+      {/* Desktop Navigation Island */}
+      <nav className="lucky-nav-center" aria-label="Main Navigation">
+        <Link
+          to="/"
+          onClick={scrollTop}
+          className={`lucky-nav-pill ${isActive("/") ? "active" : ""}`}
+        >
+          <i className="fa-solid fa-house"></i>
+          <span>Home</span>
+        </Link>
+        <Link
+          to="/aboutus"
+          onClick={scrollTop}
+          className={`lucky-nav-pill ${isActive("/aboutus") ? "active" : ""}`}
+        >
+          <i className="fa-solid fa-circle-info"></i>
+          <span>About us</span>
+        </Link>
+        <Link
+          to="/product"
+          onClick={scrollTop}
+          className={`lucky-nav-pill ${isActive("/product") ? "active" : ""}`}
+        >
+          <i className="fa-solid fa-apple-whole"></i>
+          <span>Products</span>
+        </Link>
+        <Link
+          to="/contactus"
+          onClick={scrollTop}
+          className={`lucky-nav-pill ${isActive("/contactus") ? "active" : ""}`}
+        >
+          <i className="fa-solid fa-envelope"></i>
+          <span>Contact us</span>
+        </Link>
+      </nav>
 
+      {/* Right Action Controls */}
+      <div className="lucky-nav-right">
+        {/* Cart Link with Badge */}
+        <Link
+          to="/cart"
+          onClick={scrollTop}
+          className="lucky-action-circle-btn"
+          aria-label="Shopping Cart"
+          title="Shopping Cart"
+        >
+          <i className="fa-solid fa-cart-shopping"></i>
+          {count != null && count > 0 ? (
+            <span className="lucky-cart-badge">{count}</span>
+          ) : null}
+        </Link>
+
+        {/* Profile / Dropdown */}
+        <div className="lucky-profile-dropdown-wrapper" ref={dropdownRef}>
           {login ? (
-            <button className="login-btn mx-2" onClick={handleLogout}>
-              Logout
+            <button
+              type="button"
+              className={`lucky-action-circle-btn ${dropdownOpen ? "active" : ""}`}
+              onClick={() => setDropdownOpen((prev) => !prev)}
+              aria-label="User Account Menu"
+              title="User Account"
+            >
+              <i className="fa-solid fa-user"></i>
             </button>
           ) : (
-            <Link to="/login" className="login-btn mx-2">
-              Login
+            <Link
+              to="/login"
+              onClick={scrollTop}
+              className="lucky-action-circle-btn"
+              aria-label="Sign In"
+              title="Sign In"
+            >
+              <i className="fa-regular fa-user"></i>
             </Link>
           )}
-          <i className="fa-solid fa-bars" onClick={handleBars}></i>
-          {menuOpen && (
-            <div className="mobile-menu">
-              <Link to="/" onClick={() => setMenuOpen(false)}>
-                Home
-              </Link>
-              <Link to="/aboutus" onClick={() => setMenuOpen(false)}>
-                About
-              </Link>
-              <Link to="/contactus" onClick={() => setMenuOpen(false)}>
-                Contact
-              </Link>
-              <Link to="/product" onClick={() => setMenuOpen(false)}>
-                Product
-              </Link>
-              <Link to="/cart" onClick={() => setMenuOpen(false)}>
-                Cart
+
+          {login && dropdownOpen && (
+            <div className="lucky-dropdown-panel">
+              <div className="lucky-dropdown-header">
+                <i className="fa-solid fa-circle-user lucky-dropdown-avatar"></i>
+                <div className="lucky-dropdown-user-info">
+                  <span className="lucky-dropdown-user-name">Welcome!</span>
+                  <span className="lucky-dropdown-user-role">Member</span>
+                </div>
+              </div>
+
+              <Link
+                to="/dashboard"
+                className="lucky-dropdown-item"
+                onClick={() => {
+                  setDropdownOpen(false);
+                  scrollTop();
+                }}
+              >
+                <i className="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
               </Link>
 
-              {login && (
-                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
-                  Dashboard
-                </Link>
-              )}
+              <Link
+                to="/profile"
+                className="lucky-dropdown-item"
+                onClick={() => {
+                  setDropdownOpen(false);
+                  scrollTop();
+                }}
+              >
+                <i className="fa-solid fa-id-card"></i>
+                <span>My Profile</span>
+              </Link>
 
-              {login ? (
-                <div onClick={handleLogout}>Logout</div>
-              ) : (
-                <Link to="/login">Login</Link>
-              )}
+              <button
+                type="button"
+                className="lucky-dropdown-item logout-item"
+                onClick={handleLogout}
+              >
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+              </button>
             </div>
           )}
         </div>
-      </div>
-      {/* <nav className="navbar main-navbar  navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <a className="navbar-brand text-success" href="/">
-          <Link to={"/"} className="nav-link active" aria-current="page">
-            Lucky Fruits
+
+        {/* Login / Logout Pill CTA (Desktop) */}
+        {login ? (
+          <button
+            type="button"
+            className="lucky-nav-cta logout-cta"
+            onClick={handleLogout}
+          >
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
+          </button>
+        ) : (
+          <Link
+            to="/login"
+            className="lucky-nav-cta login-cta"
+            onClick={scrollTop}
+          >
+            <i className="fa-solid fa-arrow-right-to-bracket"></i>
+            <span>Login</span>
           </Link>
-        </a>
-  
-        <div
-          id="navbarSupportedContent"
-          className="collapse navbar-collapse show"
+        )}
+
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          type="button"
+          className={`lucky-mobile-toggle-btn ${menuOpen ? "open" : ""}`}
+          onClick={handleBars}
+          aria-label="Toggle Navigation Menu"
         >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-          <div className="Navbar-login">
-            <Link
-              to="cart"
-              className="fa-solid fa-cart-shopping cart-icon align-center"
-            ></Link>
-            <p className="cart-count">{count == null ? 0 : count}</p>
-            {login.isloggedin ? (
-              <Link to="login" className="btn login-btn mx-3">
-                <h5 onClick={handleLogout}>Logout</h5>
-              </Link>
-            ) : (
-              <Link to="login" className="btn login-btn mx-3">
-                <h5>Login</h5>
-              </Link>
-            )}
-          </div>
-        </div>
+          <i className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
+        </button>
       </div>
-    </nav> */}
-    </>
+
+      {/* Mobile Drawer Menu */}
+      {menuOpen && (
+        <div className="lucky-mobile-menu-drawer" ref={mobileMenuRef}>
+          <Link
+            to="/"
+            className={`lucky-mobile-menu-link ${isActive("/") ? "active" : ""}`}
+            onClick={() => {
+              setMenuOpen(false);
+              scrollTop();
+            }}
+          >
+            <i className="fa-solid fa-house"></i>
+            <span>Home</span>
+          </Link>
+          <Link
+            to="/aboutus"
+            className={`lucky-mobile-menu-link ${isActive("/aboutus") ? "active" : ""}`}
+            onClick={() => {
+              setMenuOpen(false);
+              scrollTop();
+            }}
+          >
+            <i className="fa-solid fa-circle-info"></i>
+            <span>About us</span>
+          </Link>
+          <Link
+            to="/product"
+            className={`lucky-mobile-menu-link ${isActive("/product") ? "active" : ""}`}
+            onClick={() => {
+              setMenuOpen(false);
+              scrollTop();
+            }}
+          >
+            <i className="fa-solid fa-apple-whole"></i>
+            <span>Products</span>
+          </Link>
+          <Link
+            to="/contactus"
+            className={`lucky-mobile-menu-link ${isActive("/contactus") ? "active" : ""}`}
+            onClick={() => {
+              setMenuOpen(false);
+              scrollTop();
+            }}
+          >
+            <i className="fa-solid fa-envelope"></i>
+            <span>Contact us</span>
+          </Link>
+          <Link
+            to="/cart"
+            className={`lucky-mobile-menu-link ${isActive("/cart") ? "active" : ""}`}
+            onClick={() => {
+              setMenuOpen(false);
+              scrollTop();
+            }}
+          >
+            <i className="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
+            {count != null && count > 0 && (
+              <span className="lucky-mobile-cart-badge">{count}</span>
+            )}
+          </Link>
+
+          {login && (
+            <>
+              <div className="lucky-mobile-menu-divider"></div>
+              <Link
+                to="/dashboard"
+                className="lucky-mobile-menu-link"
+                onClick={() => {
+                  setMenuOpen(false);
+                  scrollTop();
+                }}
+              >
+                <i className="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+              </Link>
+              <Link
+                to="/profile"
+                className="lucky-mobile-menu-link"
+                onClick={() => {
+                  setMenuOpen(false);
+                  scrollTop();
+                }}
+              >
+                <i className="fa-solid fa-id-card"></i>
+                <span>My Profile</span>
+              </Link>
+            </>
+          )}
+
+          <div className="lucky-mobile-menu-divider"></div>
+
+          {login ? (
+            <button
+              type="button"
+              className="lucky-mobile-auth-btn logout"
+              onClick={handleLogout}
+            >
+              <i className="fa-solid fa-arrow-right-from-bracket"></i>
+              <span>Logout</span>
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="lucky-mobile-auth-btn login"
+              onClick={() => {
+                setMenuOpen(false);
+                scrollTop();
+              }}
+            >
+              <i className="fa-solid fa-arrow-right-to-bracket"></i>
+              <span>Login</span>
+            </Link>
+          )}
+        </div>
+      )}
+    </header>
   );
 }
 
