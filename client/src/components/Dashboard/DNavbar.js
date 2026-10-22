@@ -80,6 +80,28 @@ function DNavbar() {
 
   return (
     <>
+      {/* Top Mobile Bar for Dashboard (Visible only on tablets & phones) */}
+      <div className="lucky-admin-mobile-topbar">
+        <button
+          type="button"
+          className="lucky-admin-mobile-menu-btn"
+          onClick={() => setMobileOpen(true)}
+          aria-label="Open Sidebar Menu"
+        >
+          <i className="fa-solid fa-bars"></i>
+          <span>Menu</span>
+        </button>
+
+        <div className="lucky-admin-mobile-brand">
+          <img src={siteIcon} alt="Lucky Fruits Logo" />
+          <span>Lucky<span>Fruits</span></span>
+        </div>
+
+        <Link to="/" className="lucky-admin-mobile-store-btn" title="View Customer Store">
+          <i className="fa-solid fa-store"></i>
+        </Link>
+      </div>
+
       {/* Mobile Drawer Backdrop */}
       {mobileOpen && (
         <div

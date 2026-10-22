@@ -463,129 +463,439 @@
 }
 
 /* --------------------------------------------------------------------------
-   Mobile Menu Drawer
+   Mobile Side Navbar Drawer & Backdrop
    -------------------------------------------------------------------------- */
-.lucky-mobile-menu-drawer {
-  position: fixed;
-  top: 4.8rem;
-  right: 1rem;
-  width: calc(100% - 2rem);
-  max-width: 340px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px -10px rgba(6, 78, 59, 0.25), 0 6px 15px rgba(0, 0, 0, 0.05);
-  padding: 14px;
+.lucky-side-nav-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: rgba(3, 19, 13, 0.65) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  z-index: 100000 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  pointer-events: none !important;
+}
+
+.lucky-side-nav-backdrop.open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.lucky-side-navbar {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 320px !important;
+  max-width: 86vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fee7 60%, #f0fdf4 100%) !important;
+  box-shadow: -8px 0 35px rgba(0, 0, 0, 0.28) !important;
+  z-index: 100001 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: translateX(100%) !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.lucky-side-navbar.open {
+  transform: translateX(0) !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Side Nav Header */
+.lucky-side-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 1.25rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.18);
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
+  flex-shrink: 0;
+}
+
+.lucky-side-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lucky-side-nav-logo-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1.5px solid #a7f3d0;
+  box-shadow: 0 3px 8px rgba(16, 185, 129, 0.2);
+  flex-shrink: 0;
+}
+
+.lucky-side-nav-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lucky-side-nav-brand-text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  z-index: 10002;
-  animation: mobileMenuSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  line-height: 1.1;
 }
 
-@keyframes mobileMenuSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-12px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.lucky-side-nav-brand-text .title {
+  font-family: var(--nav-font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #064e3b;
 }
 
-.lucky-mobile-menu-link {
+.lucky-side-nav-brand-text .title span {
+  color: #10b981;
+}
+
+.lucky-side-nav-brand-text .subtitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #059669;
+}
+
+.lucky-side-nav-close-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.08);
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.lucky-side-nav-close-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* User Card in Side Nav */
+.lucky-side-nav-user-card {
+  padding: 0.85rem 1.15rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  background: rgba(248, 250, 252, 0.8);
+  flex-shrink: 0;
+}
+
+.lucky-side-user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lucky-side-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.lucky-side-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.lucky-side-user-info .name {
+  font-family: var(--nav-font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #064e3b;
+}
+
+.lucky-side-user-info .status {
+  font-size: 0.72rem;
+  color: #059669;
+  font-weight: 600;
+}
+
+.lucky-side-login-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.05));
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: #064e3b;
+  transition: all 0.2s ease;
+}
+
+.lucky-side-login-banner:hover {
+  background: rgba(16, 185, 129, 0.18);
+  transform: translateX(2px);
+}
+
+.lucky-side-login-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.12);
+  flex-shrink: 0;
+}
+
+.lucky-side-login-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.lucky-side-login-text .primary {
+  font-family: var(--nav-font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #064e3b;
+}
+
+.lucky-side-login-text .secondary {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* Side Nav Links */
+.lucky-side-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.85rem 0.95rem;
+  overflow-y: auto;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lucky-side-nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 16px;
+  padding: 10px 14px;
   border-radius: 12px;
+  color: #334155;
   font-family: var(--nav-font-body);
   font-size: 0.95rem;
   font-weight: 600;
-  color: #334155;
   text-decoration: none !important;
-  transition: all 0.2s ease;
+  transition: all 0.22s ease;
   position: relative;
 }
 
-.lucky-mobile-menu-link i {
-  font-size: 1.05rem;
-  color: var(--emerald-deep);
-  width: 22px;
-  text-align: center;
+.lucky-side-item-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
-.lucky-mobile-menu-link:hover {
-  background: var(--mint-light);
-  color: var(--emerald-dark);
+.lucky-side-nav-item:hover {
+  background: rgba(16, 185, 129, 0.1);
+  color: #064e3b;
   transform: translateX(4px);
 }
 
-.lucky-mobile-menu-link.active {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.32);
-}
-
-.lucky-mobile-menu-link.active i {
+.lucky-side-nav-item:hover .lucky-side-item-icon {
+  background: #10b981;
   color: #ffffff;
 }
 
-.lucky-mobile-cart-badge {
+.lucky-side-nav-item.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.lucky-side-nav-item.active .lucky-side-item-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.lucky-side-pill-badge {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  padding: 2px 7px;
+  border-radius: 8px;
+}
+
+.lucky-side-nav-item.active .lucky-side-pill-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lucky-side-cart-badge {
   margin-left: auto;
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: #ffffff;
   padding: 2px 8px;
   border-radius: 9999px;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
 }
 
-.lucky-mobile-menu-divider {
+.lucky-side-nav-divider {
   height: 1px;
-  background: rgba(16, 185, 129, 0.12);
-  margin: 6px 0;
+  background: rgba(16, 185, 129, 0.14);
+  margin: 6px 4px;
 }
 
-.lucky-mobile-auth-btn {
+/* Quick Order Actions in Side Nav */
+.lucky-side-nav-actions {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border-top: 1px solid rgba(16, 185, 129, 0.12);
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.lucky-side-btn-wa {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  padding: 12px;
-  border-radius: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #ffffff !important;
   font-family: var(--nav-font-heading);
-  font-size: 0.95rem;
   font-weight: 700;
+  font-size: 0.88rem;
   text-decoration: none !important;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.35);
+  transition: all 0.22s ease;
+}
+
+.lucky-side-btn-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+}
+
+.lucky-side-btn-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px;
+  border-radius: 12px;
+  background: #f0fdf4;
+  border: 1px solid #a7f3d0;
+  color: #065f46 !important;
+  font-family: var(--nav-font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-decoration: none !important;
+  transition: all 0.22s ease;
+}
+
+.lucky-side-btn-call:hover {
+  background: #ecfdf5;
+  border-color: #059669;
+}
+
+/* Footer Bottom Auth */
+.lucky-side-nav-bottom {
+  padding: 0.75rem 1rem 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.lucky-side-auth-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: 12px;
+  font-family: var(--nav-font-heading);
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   cursor: pointer;
   border: none;
-  transition: all 0.25s ease;
-  margin-top: 4px;
+  text-decoration: none !important;
+  transition: all 0.22s ease;
+  box-sizing: border-box;
 }
 
-.lucky-mobile-auth-btn.login {
+.lucky-side-auth-btn.login {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
-.lucky-mobile-auth-btn.logout {
+.lucky-side-auth-btn.logout {
   background: rgba(239, 68, 68, 0.1);
   color: #dc2626 !important;
   border: 1px solid rgba(239, 68, 68, 0.25);
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Media Queries
+   Responsive Media Queries for Navbar
    -------------------------------------------------------------------------- */
+@media (min-width: 993px) {
+  .lucky-side-nav-backdrop,
+  .lucky-side-navbar {
+    display: none !important;
+  }
+}
+
 @media (max-width: 992px) {
   .lucky-navbar-wrapper {
     padding: 0 1.25rem !important;
+    height: 4rem !important;
   }
   .lucky-nav-center {
     display: none !important;
@@ -607,8 +917,8 @@
     font-size: 1.25rem;
   }
   .lucky-brand-icon {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
   }
   .lucky-nav-cta {
     display: none !important;
@@ -616,5 +926,17 @@
   .lucky-action-circle-btn {
     width: 36px;
     height: 36px;
+  }
+  .lucky-mobile-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lucky-side-navbar {
+    width: 290px !important;
+    max-width: 88vw !important;
   }
 }

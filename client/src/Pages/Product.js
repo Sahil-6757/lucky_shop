@@ -297,7 +297,9 @@ function Product() {
                     </div>
 
                     <div className="lucky-product-card-body">
-                      <h3 className="lucky-product-name">{itemValue.name}</h3>
+                      <h3 className="lucky-product-name" title={itemValue.name}>
+                        {itemValue.name}
+                      </h3>
                       <p className="lucky-product-desc">
                         {itemValue.description || "Fresh, naturally ripened fruit hand-picked for premium sweetness and texture."}
                       </p>

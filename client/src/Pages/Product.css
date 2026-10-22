@@ -1,20 +1,20 @@
 /* ==========================================================================
-   LUCKY FRUITS - PRODUCT PAGE STYLING & FRESH EMERALD THEME
+   LUCKY FRUITS - FULLY RESPONSIVE PRODUCT PAGE (FRESH EMERALD THEME)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 .lucky-product-page {
   min-height: calc(100vh - 4.5rem);
-  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 40%, #ffffff 100%);
-  padding: 3rem 1rem 5rem 1rem;
+  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 35%, #ffffff 100%);
+  padding: 3rem 1.5rem 5rem 1.5rem;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #1e293b;
   box-sizing: border-box;
 }
 
 .lucky-product-container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -36,7 +36,7 @@
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   color: #059669;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -46,12 +46,12 @@
 
 .lucky-product-hero-title {
   font-family: 'Outfit', sans-serif;
-  font-size: 2.7rem;
+  font-size: clamp(1.65rem, 4vw, 2.7rem);
   font-weight: 800;
   color: #064e3b;
   line-height: 1.2;
   letter-spacing: -0.5px;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.85rem 0;
 }
 
 .lucky-product-hero-title .text-emerald {
@@ -61,8 +61,8 @@
 }
 
 .lucky-product-hero-subtitle {
-  font-size: 1.1rem;
-  line-height: 1.65;
+  font-size: clamp(0.92rem, 2vw, 1.1rem);
+  line-height: 1.6;
   color: #475569;
   margin: 0 auto;
 }
@@ -80,6 +80,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  box-sizing: border-box;
 }
 
 .lucky-search-row {
@@ -92,7 +93,7 @@
 .lucky-search-box {
   position: relative;
   flex: 1;
-  min-width: 260px;
+  min-width: 240px;
 }
 
 .lucky-search-icon {
@@ -154,6 +155,7 @@
   cursor: pointer;
   outline: none;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .lucky-sort-select:focus {
@@ -161,20 +163,27 @@
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
 }
 
-/* Category Filter Pills */
+/* Category Filter Pills (Horizontal Touch Scroller) */
 .lucky-category-pills {
   display: flex;
   align-items: center;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 4px 2px 8px 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.lucky-category-pills::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .lucky-category-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 16px;
+  padding: 8px 16px;
   border-radius: 9999px;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -184,8 +193,10 @@
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
+  user-select: none;
 }
 
 .lucky-category-pill:hover {
@@ -255,6 +266,7 @@
   left: 12px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 4px 10px;
   border-radius: 9999px;
   font-size: 0.72rem;
@@ -272,6 +284,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  box-sizing: border-box;
 }
 
 .lucky-product-name {
@@ -295,7 +308,7 @@
   flex: 1;
 }
 
-/* Price & Availability */
+/* Price & Availability Row */
 .lucky-product-price-row {
   display: flex;
   align-items: baseline;
@@ -425,6 +438,7 @@
   justify-content: center;
   gap: 8px;
   margin-top: 2rem;
+  flex-wrap: wrap;
 }
 
 .lucky-page-btn {
@@ -485,36 +499,164 @@
 }
 
 /* --------------------------------------------------------------------------
-   Responsive Media Queries
+   Responsive Breakpoints
    -------------------------------------------------------------------------- */
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .lucky-product-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 
-@media (max-width: 768px) {
-  .lucky-product-hero-title {
-    font-size: 2.1rem;
+@media (max-width: 850px) {
+  .lucky-product-page {
+    padding: 2rem 1rem 4rem 1rem;
   }
+
   .lucky-product-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.15rem;
   }
-  .lucky-product-image-box {
-    height: 160px;
-  }
-  .lucky-product-name {
-    font-size: 1.05rem;
-  }
-}
 
-@media (max-width: 520px) {
-  .lucky-product-grid {
-    grid-template-columns: 1fr;
-  }
   .lucky-search-row {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.85rem;
+  }
+
+  .lucky-sort-select {
+    width: 100%;
+  }
+
+  .lucky-product-image-box {
+    height: 170px;
+  }
+}
+
+@media (max-width: 576px) {
+  .lucky-product-page {
+    padding: 1.25rem 0.75rem 3.5rem 0.75rem;
+  }
+
+  .lucky-product-hero {
+    margin-bottom: 1.5rem;
+  }
+
+  .lucky-product-hero-title br {
+    display: none;
+  }
+
+  .lucky-filter-bar {
+    padding: 1rem 0.85rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  .lucky-search-box {
+    min-width: 0;
+  }
+
+  .lucky-search-input {
+    padding: 10px 38px 10px 38px;
+    font-size: 0.9rem;
+  }
+
+  .lucky-sort-select {
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+
+  .lucky-category-pill {
+    padding: 6px 13px;
+    font-size: 0.82rem;
+  }
+
+  /* Modern 2-column mobile card grid */
+  .lucky-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .lucky-product-card {
+    border-radius: 16px;
+  }
+
+  .lucky-product-image-box {
+    height: 135px;
+  }
+
+  .lucky-fresh-tag {
+    top: 8px;
+    left: 8px;
+    padding: 2px 7px;
+    font-size: 0.65rem;
+  }
+
+  .lucky-product-card-body {
+    padding: 0.75rem;
+  }
+
+  .lucky-product-name {
+    font-size: 0.98rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lucky-product-desc {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .lucky-product-price-row {
+    margin-bottom: 0.55rem;
+  }
+
+  .lucky-product-price {
+    font-size: 1.15rem;
+  }
+
+  .lucky-stock-badge {
+    font-size: 0.68rem;
+  }
+
+  .lucky-add-cart-btn {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    border-radius: 10px;
+    gap: 6px;
+  }
+
+  /* Pagination adjustments */
+  .lucky-pagination-container {
+    gap: 5px;
+  }
+
+  .lucky-page-btn {
+    padding: 6px 11px;
+    font-size: 0.82rem;
+  }
+
+  .lucky-page-number-pill {
+    width: 33px;
+    height: 33px;
+    font-size: 0.85rem;
+    border-radius: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .lucky-product-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .lucky-product-image-box {
+    height: 160px;
   }
 }
