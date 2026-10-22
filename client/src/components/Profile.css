@@ -1,0 +1,870 @@
+/* ==========================================================================
+   LUCKY FRUITS - PROFILE PAGE STYLING & FRESH EMERALD THEME
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.lucky-profile-page {
+  min-height: calc(100vh - 4.5rem);
+  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 40%, #ffffff 100%);
+  padding: 2.5rem 1rem 5rem 1rem;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+.lucky-profile-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Profile Hero Banner Card
+   -------------------------------------------------------------------------- */
+.lucky-profile-hero-card {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 24px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 10px 32px -4px rgba(16, 185, 129, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.lucky-profile-hero-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.lucky-profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.lucky-profile-avatar-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  flex-shrink: 0;
+}
+
+.lucky-profile-meta h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.lucky-profile-role-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #059669;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.lucky-profile-contact-chips {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.lucky-contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.lucky-contact-chip i {
+  color: #10b981;
+}
+
+.lucky-profile-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lucky-profile-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  box-sizing: border-box;
+}
+
+.lucky-profile-action-btn.edit {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+}
+
+.lucky-profile-action-btn.edit:hover {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.lucky-profile-action-btn.primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.lucky-profile-action-btn.primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   Stats Strip
+   -------------------------------------------------------------------------- */
+.lucky-profile-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.lucky-profile-stat-box {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  border-radius: 18px;
+  padding: 1.35rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.06);
+  transition: all 0.25s ease;
+}
+
+.lucky-profile-stat-box:hover {
+  transform: translateY(-3px);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+}
+
+.lucky-stat-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.lucky-stat-icon-wrapper.orders {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.lucky-stat-icon-wrapper.pending {
+  background: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.lucky-stat-icon-wrapper.completed {
+  background: #e0f2fe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.lucky-stat-icon-wrapper.spend {
+  background: #f3e8ff;
+  color: #9333ea;
+  border: 1px solid #e9d5ff;
+}
+
+.lucky-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.lucky-stat-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #064e3b;
+  line-height: 1.1;
+}
+
+.lucky-stat-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Main Content Layout (Left: Address / Right: Orders)
+   -------------------------------------------------------------------------- */
+.lucky-profile-main-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Left Sidebar Cards */
+.lucky-profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lucky-profile-card {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.06);
+}
+
+.lucky-profile-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.lucky-profile-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lucky-profile-card-title i {
+  color: #10b981;
+}
+
+.lucky-card-edit-link {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #059669;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lucky-card-edit-link:hover {
+  color: #047857;
+  text-decoration: underline;
+}
+
+.lucky-address-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lucky-address-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.lucky-address-line i {
+  color: #059669;
+  margin-top: 4px;
+}
+
+.lucky-address-hint {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Quick Support Box */
+.lucky-support-box {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  border-radius: 20px;
+  padding: 1.5rem;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(6, 78, 59, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lucky-support-box h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.lucky-support-box p {
+  font-size: 0.86rem;
+  color: #d1fae5;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.lucky-support-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #25d366;
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  margin-top: 6px;
+}
+
+.lucky-support-whatsapp-btn:hover {
+  background: #1eb956;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Order History Section
+   -------------------------------------------------------------------------- */
+.lucky-orders-section {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px -4px rgba(16, 185, 129, 0.08);
+}
+
+.lucky-orders-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.lucky-orders-heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lucky-orders-count-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+/* Status Filter Tabs */
+.lucky-status-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lucky-status-tab-btn {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.lucky-status-tab-btn:hover {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.lucky-status-tab-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-color: #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* Order Cards List */
+.lucky-order-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lucky-order-card {
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.05);
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.lucky-order-card:hover {
+  border-color: rgba(16, 185, 129, 0.38);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+}
+
+.lucky-order-card-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lucky-order-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+}
+
+.lucky-order-id-tag {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  color: #064e3b;
+}
+
+.lucky-order-date {
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Status Badges */
+.lucky-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.lucky-status-indicator.pending {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.lucky-status-indicator.delivered,
+.lucky-status-indicator.completed {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.lucky-status-indicator.cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* Order Card Body */
+.lucky-order-card-body {
+  padding: 16px 18px;
+}
+
+.lucky-order-items-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lucky-order-product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.92rem;
+  padding: 4px 0;
+}
+
+.lucky-order-product-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lucky-product-bullet {
+  color: #10b981;
+}
+
+.lucky-order-product-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.lucky-order-product-qty {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.lucky-order-product-rate {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* Delivery destination row */
+.lucky-order-delivery-preview {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #64748b;
+}
+
+.lucky-order-delivery-preview i {
+  color: #059669;
+}
+
+/* Order Card Footer */
+.lucky-order-card-footer {
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lucky-order-payment-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.lucky-order-total-price-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lucky-order-total-amount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #064e3b;
+}
+
+.lucky-cancel-order-btn {
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lucky-cancel-order-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+/* --------------------------------------------------------------------------
+   Empty Orders State
+   -------------------------------------------------------------------------- */
+.lucky-orders-empty-state {
+  text-align: center;
+  padding: 3.5rem 1rem;
+}
+
+.lucky-empty-basket-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  border: 2px dashed #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  font-size: 2rem;
+  margin: 0 auto 1.25rem auto;
+}
+
+.lucky-empty-orders-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0 0 6px 0;
+}
+
+.lucky-empty-orders-text {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0 0 1.5rem 0;
+}
+
+/* --------------------------------------------------------------------------
+   Edit Profile Modal
+   -------------------------------------------------------------------------- */
+.lucky-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  z-index: 10005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: modalFade 0.2s ease forwards;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lucky-modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  box-shadow: 0 20px 45px -10px rgba(6, 78, 59, 0.3);
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+  position: relative;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.95) translateY(10px); }
+  to { transform: scale(1) translateY(0); }
+}
+
+.lucky-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.lucky-modal-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+}
+
+.lucky-modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.lucky-modal-close-btn:hover {
+  color: #ef4444;
+}
+
+.lucky-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lucky-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lucky-modal-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.lucky-modal-input {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.lucky-modal-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.lucky-modal-save-btn {
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 0.5rem;
+}
+
+.lucky-modal-save-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .lucky-profile-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lucky-profile-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .lucky-profile-hero-card {
+    padding: 1.5rem 1.25rem;
+  }
+  .lucky-profile-identity {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+  .lucky-profile-contact-chips {
+    justify-content: center;
+  }
+  .lucky-profile-hero-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  .lucky-profile-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .lucky-orders-section {
+    padding: 1.25rem;
+  }
+  .lucky-order-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -336,13 +336,14 @@ app.delete("/delete-order/:id", async (req, res) => {
   }
 });
 
-app.post("/getOrders", async (req, res) => {
+app.post(["/getOrders", "/getorder"], async (req, res) => {
   try {
-    let email = req.body.email;
+    let email = req.body.email || req.body.data;
     let data = await Order.find({ email: email });
     res.json(data);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Server Error" });
   }
 });
 

@@ -2,14 +2,7 @@ import { useState, useEffect } from "react";
 import "../App.css";
 import siteIcon from "../assets/siteIcon.jpg";
 import { Link, useLocation } from "react-router-dom";
-
-// ✅ Swiper imports
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import Testimonial from "./Testimonial";
 
 function Footer() {
   // ✅ Scroll button state
@@ -45,74 +38,8 @@ function Footer() {
 
   return (
     <div>
-      <div className="container">
-        {/* ABOUT + MAP */}
-       
-
-        {/* ⭐ TESTIMONIAL SWIPER */}
-        <div className="my-5">
-          <h3 className="text-center text-success mb-4">Customer Reviews</h3>
-
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={20}
-            slidesPerView={1}
-            className="swiper"
-            pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet", bulletActiveClass: "swiper-pagination-bullet-active" }}
-            loop={true}
-            autoplay={{ delay: 2500 }}
-            breakpoints={{
-              576: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              992: { slidesPerView: 3 },
-            }}
-          >
-            <SwiperSlide>
-              <div className="review-card card w-auto">
-                <div className="stars">★★★★★</div>
-                <p className="date-time">2 day ago</p>
-                <p className="description">
-                  Fresh fruits quality is amazing. Highly recommended!
-                </p>
-                <div className="author">— John Doe</div>
-              </div>
-            </SwiperSlide>
-
-             <SwiperSlide>
-              <div className="review-card card w-auto">
-                <div className="stars">★★★★★</div>
-                <p className="date-time">2 day ago</p>
-                <p className="description">
-                  Fresh fruits quality is amazing. Highly recommended!
-                </p>
-                <div className="author">— John Doe</div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="review-card card w-auto">
-                <div className="stars">★★★★★</div>
-                <p className="date-time">3 day ago</p>
-                <p className="description">
-                  Fast delivery and great service. Loved it!
-                </p>
-                <div className="author">— Rahul</div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="review-card card  w-auto">
-                <div className="stars">★★★★★</div>
-                <p className="date-time">5 day ago</p>
-                <p className="description">
-                  Best wholesale price in market. Will order again.
-                </p>
-                <div className="author">— Priya</div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-      </div>
+      {/* ⭐ TESTIMONIALS SECTION */}
+      {!isDashboard && <Testimonial />}
 
       {/* WhatsApp Button */}
 

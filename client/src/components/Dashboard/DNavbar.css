@@ -1,0 +1,607 @@
+/* ==========================================================================
+   LUCKY FRUITS - ULTRA LUXURY DASHBOARD LEFT SIDEBAR (FRESH EMERALD THEME)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* Main Sidebar Container */
+.lucky-admin-sidebar {
+  width: 280px;
+  min-width: 280px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #051e14 0%, #072a1c 45%, #03150d 100%);
+  border-right: 1px solid rgba(16, 185, 129, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 6px 0 28px rgba(2, 18, 11, 0.35);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  box-sizing: border-box;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+/* Subtle Emerald Glow at the top */
+.lucky-admin-sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 220px;
+  background: radial-gradient(circle at 85% 0%, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom scrollbar for sidebar */
+.lucky-admin-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+.lucky-admin-sidebar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+.lucky-admin-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 4px;
+}
+.lucky-admin-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Header (Brand Area)
+   -------------------------------------------------------------------------- */
+.lucky-sidebar-header {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 1.35rem 1.1rem 1.35rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lucky-sidebar-brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lucky-sidebar-logo-frame {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid #34d399;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lucky-sidebar-logo-frame img {
+  width: 100%;
+  height: 100%;
+  border-radius: 11px;
+  object-fit: cover;
+}
+
+.lucky-sidebar-header:hover .lucky-sidebar-logo-frame {
+  transform: rotate(6deg) scale(1.05);
+}
+
+/* Online indicator dot on the brand logo */
+.lucky-logo-online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border: 2.5px solid #062b1d;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.lucky-sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.lucky-sidebar-brand-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.4px;
+}
+
+.lucky-sidebar-brand-title span {
+  color: #34d399;
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+}
+
+.lucky-sidebar-suite-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: #a7f3d0;
+  opacity: 0.9;
+  margin-top: 3px;
+}
+
+/* Mobile Close Button */
+.lucky-sidebar-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a7f3d0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lucky-sidebar-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Depot Status Strip
+   -------------------------------------------------------------------------- */
+.lucky-depot-strip {
+  position: relative;
+  z-index: 1;
+  padding: 0.85rem 1.15rem 0.25rem 1.15rem;
+}
+
+.lucky-depot-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.76rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.lucky-pulse-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: luckyPulseGreen 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  flex-shrink: 0;
+}
+
+@keyframes luckyPulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.lucky-depot-name {
+  color: #e2e8f0;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.lucky-depot-divider {
+  color: rgba(167, 243, 208, 0.4);
+  font-size: 0.8rem;
+}
+
+.lucky-depot-status {
+  color: #34d399;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------------------------------
+   Navigation Groups & Links
+   -------------------------------------------------------------------------- */
+.lucky-sidebar-nav-content {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  flex: 1;
+}
+
+.lucky-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.lucky-nav-group-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px 6px 10px;
+}
+
+.lucky-nav-group-icon {
+  font-size: 0.7rem;
+  color: #34d399;
+  opacity: 0.85;
+}
+
+.lucky-nav-group-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.69rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: #6ee7b7;
+  margin: 0;
+}
+
+.lucky-nav-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Individual Link */
+.lucky-sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: #cbd5e1;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.lucky-link-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.lucky-sidebar-link-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: #a7f3d0;
+  transition: all 0.22s ease;
+  flex-shrink: 0;
+}
+
+.lucky-link-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.15px;
+}
+
+.lucky-link-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lucky-link-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lucky-link-arrow {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.25);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover State */
+.lucky-sidebar-link:hover {
+  background: rgba(16, 185, 129, 0.12);
+  color: #ffffff;
+  border-color: rgba(16, 185, 129, 0.24);
+  transform: translateX(4px);
+}
+
+.lucky-sidebar-link:hover .lucky-sidebar-link-icon {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.35);
+  transform: scale(1.08);
+}
+
+.lucky-sidebar-link:hover .lucky-link-arrow {
+  color: #34d399;
+  transform: translateX(2px);
+}
+
+/* Active State */
+.lucky-sidebar-link.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.42);
+  border-color: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+}
+
+.lucky-sidebar-link.active .lucky-sidebar-link-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.lucky-sidebar-link.active .lucky-link-arrow {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.lucky-sidebar-link.active .lucky-link-badge {
+  background: #ffffff;
+  color: #065f46;
+  border-color: #ffffff;
+}
+
+/* Active Indicator Line on Left Edge */
+.lucky-sidebar-link.active::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 22px;
+  background: #a7f3d0;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 10px #34d399;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Footer
+   -------------------------------------------------------------------------- */
+.lucky-sidebar-footer {
+  position: relative;
+  z-index: 1;
+  padding: 1.15rem 1rem;
+  border-top: 1px solid rgba(16, 185, 129, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+/* Admin Profile Card */
+.lucky-admin-profile-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+.lucky-admin-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+  flex-shrink: 0;
+}
+
+.lucky-admin-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.lucky-admin-name {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.2px;
+}
+
+.lucky-admin-role {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #a7f3d0;
+  font-weight: 600;
+}
+
+.lucky-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  flex-shrink: 0;
+}
+
+/* Action Buttons */
+.lucky-sidebar-footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lucky-sidebar-footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  color: #a7f3d0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.22s ease;
+  background: rgba(16, 185, 129, 0.09);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+
+.lucky-sidebar-footer-link:hover {
+  background: rgba(16, 185, 129, 0.22);
+  color: #ffffff;
+  border-color: rgba(52, 211, 153, 0.4);
+  transform: translateY(-1px);
+}
+
+.lucky-sidebar-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.lucky-sidebar-logout-btn:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  border-color: #dc2626;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Toggle & Responsive Drawer
+   -------------------------------------------------------------------------- */
+.lucky-admin-mobile-toggle {
+  display: none;
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.3rem;
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.5);
+  z-index: 10003;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.lucky-admin-mobile-toggle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 26px rgba(16, 185, 129, 0.65);
+}
+
+.lucky-sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .lucky-admin-mobile-toggle {
+    display: flex;
+  }
+
+  .lucky-admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    z-index: 10004;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .lucky-admin-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 12px 0 35px rgba(0, 0, 0, 0.6);
+  }
+
+  .lucky-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    z-index: 10003;
+  }
+}

@@ -1,0 +1,616 @@
+/* ==========================================================================
+   LUCKY FRUITS - CART STYLING & FRESH EMERALD THEME
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.lucky-cart-page {
+  min-height: calc(100vh - 4.5rem);
+  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+  padding: 2.5rem 1rem 4rem 1rem;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+.lucky-cart-container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumb & Page Header
+   -------------------------------------------------------------------------- */
+.lucky-cart-header {
+  margin-bottom: 2rem;
+}
+
+.lucky-cart-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.lucky-cart-breadcrumbs a {
+  color: #059669;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.lucky-cart-breadcrumbs a:hover {
+  color: #047857;
+  text-decoration: underline;
+}
+
+.lucky-cart-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lucky-cart-heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lucky-cart-count-badge {
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.lucky-clear-cart-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.lucky-clear-cart-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Delivery Promo Banner
+   -------------------------------------------------------------------------- */
+.lucky-cart-promo-banner {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 14px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.06);
+}
+
+.lucky-promo-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.lucky-promo-text {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #065f46;
+  font-weight: 600;
+}
+
+.lucky-promo-text span {
+  color: #047857;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Main Grid Layout (Left: Items, Right: Order Summary)
+   -------------------------------------------------------------------------- */
+.lucky-cart-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   Cart Items List
+   -------------------------------------------------------------------------- */
+.lucky-cart-items-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.lucky-cart-item-card {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.16);
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  box-shadow: 0 4px 16px -2px rgba(16, 185, 129, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.lucky-cart-item-card:hover {
+  border-color: rgba(16, 185, 129, 0.38);
+  box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.12);
+  transform: translateY(-2px);
+}
+
+.lucky-item-left-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.lucky-item-image-wrapper {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lucky-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.lucky-cart-item-card:hover .lucky-item-image {
+  transform: scale(1.08);
+}
+
+.lucky-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.lucky-item-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lucky-item-unit-rate {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.lucky-item-line-total {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #059669;
+  margin: 2px 0 0 0;
+}
+
+/* Quantity & Remove Buttons */
+.lucky-item-right-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.lucky-quantity-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 9999px;
+  padding: 3px;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.06);
+}
+
+.lucky-qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #064e3b;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.lucky-qty-btn:hover:not(:disabled) {
+  background: #10b981;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.lucky-qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lucky-qty-number {
+  min-width: 34px;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #064e3b;
+  user-select: none;
+}
+
+.lucky-item-remove-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.lucky-item-remove-btn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Order Summary Sidebar Card
+   -------------------------------------------------------------------------- */
+.lucky-cart-summary-sidebar {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.lucky-order-summary-card {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 22px;
+  padding: 1.75rem;
+  box-shadow: 0 8px 30px -4px rgba(16, 185, 129, 0.1), 0 2px 8px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lucky-summary-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.14);
+  padding-bottom: 0.9rem;
+}
+
+.lucky-summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.lucky-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.lucky-summary-row span:last-child {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.lucky-summary-row .free-delivery-badge {
+  color: #059669 !important;
+  font-weight: 700;
+  background: #ecfdf5;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #a7f3d0;
+  font-size: 0.85rem;
+}
+
+.lucky-summary-divider {
+  height: 1px;
+  background: rgba(16, 185, 129, 0.15);
+  margin: 0.25rem 0;
+}
+
+.lucky-summary-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+}
+
+.lucky-summary-total-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #064e3b;
+}
+
+.lucky-summary-total-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #065f46 0%, #059669 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Checkout CTA Button */
+.lucky-checkout-cta-btn {
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.38);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.lucky-checkout-cta-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
+  transform: translateY(-2px);
+}
+
+.lucky-checkout-cta-btn:active {
+  transform: translateY(0);
+}
+
+.lucky-checkout-cta-btn i {
+  transition: transform 0.25s ease;
+}
+
+.lucky-checkout-cta-btn:hover i {
+  transform: translateX(4px);
+}
+
+.lucky-continue-shopping-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #059669;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.lucky-continue-shopping-link:hover {
+  color: #047857;
+  text-decoration: underline;
+}
+
+/* Trust Badges */
+.lucky-cart-trust-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(16, 185, 129, 0.2);
+}
+
+.lucky-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.lucky-trust-item i {
+  color: #10b981;
+  font-size: 0.95rem;
+  width: 16px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Empty Cart State
+   -------------------------------------------------------------------------- */
+.lucky-cart-empty-state {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  border-radius: 24px;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.08);
+  max-width: 580px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lucky-empty-icon-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 2px dashed #a7f3d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+  animation: floatEmptyIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatEmptyIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.lucky-empty-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0 0 0.5rem 0;
+}
+
+.lucky-empty-desc {
+  font-size: 1rem;
+  color: #64748b;
+  max-width: 420px;
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+.lucky-empty-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 30px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lucky-empty-cta-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.48);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .lucky-cart-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .lucky-cart-summary-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 576px) {
+  .lucky-cart-page {
+    padding: 1.5rem 0.75rem 3rem 0.75rem;
+  }
+  .lucky-cart-heading {
+    font-size: 1.65rem;
+  }
+  .lucky-cart-item-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .lucky-item-left-section {
+    gap: 1rem;
+  }
+  .lucky-item-image-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+  .lucky-item-name {
+    font-size: 1.05rem;
+  }
+  .lucky-item-right-section {
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f1f5f9;
+  }
+  .lucky-order-summary-card {
+    padding: 1.25rem;
+  }
+}

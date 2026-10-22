@@ -1,0 +1,562 @@
+/* ==========================================================================
+   LUCKY FRUITS - CHECKOUT PAGE STYLING & FRESH EMERALD THEME
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.lucky-checkout-page {
+  min-height: calc(100vh - 4.5rem);
+  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 40%, #ffffff 100%);
+  padding: 2.5rem 1rem 5rem 1rem;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+.lucky-checkout-container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Breadcrumb & Header
+   -------------------------------------------------------------------------- */
+.lucky-checkout-header {
+  margin-bottom: 2.25rem;
+}
+
+.lucky-checkout-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.lucky-checkout-breadcrumbs a {
+  color: #059669;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.lucky-checkout-breadcrumbs a:hover {
+  color: #047857;
+  text-decoration: underline;
+}
+
+.lucky-checkout-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lucky-checkout-heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lucky-security-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #059669;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Checkout Grid (Left: Shipping Form, Right: Order Summary)
+   -------------------------------------------------------------------------- */
+.lucky-checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2.25rem;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   Shipping Card & Form Fields
+   -------------------------------------------------------------------------- */
+.lucky-checkout-card {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px -4px rgba(16, 185, 129, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.lucky-card-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0 0 1.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+  padding-bottom: 0.75rem;
+}
+
+.lucky-card-section-title i {
+  color: #10b981;
+  font-size: 1.15rem;
+}
+
+.lucky-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.lucky-form-grid.full-width {
+  grid-template-columns: 1fr;
+}
+
+.lucky-co-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lucky-co-form-group.span-2 {
+  grid-column: span 2;
+}
+
+.lucky-co-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lucky-co-label span.req {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.lucky-co-label span.hint {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.76rem;
+  color: #059669;
+  font-weight: 600;
+}
+
+.lucky-co-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lucky-co-input-icon {
+  position: absolute;
+  left: 14px;
+  color: #059669;
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.lucky-co-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #1e293b;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.lucky-co-input:focus {
+  border-color: #10b981;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+}
+
+/* Payment Method Card */
+.lucky-payment-option-card {
+  border: 2px solid #10b981;
+  background: #ecfdf5;
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.lucky-payment-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lucky-payment-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+.lucky-payment-info h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #064e3b;
+  margin: 0 0 2px 0;
+}
+
+.lucky-payment-info p {
+  font-size: 0.85rem;
+  color: #059669;
+  font-weight: 600;
+  margin: 0;
+}
+
+.lucky-payment-checked {
+  color: #10b981;
+  font-size: 1.4rem;
+}
+
+/* Delivery Notice Box */
+.lucky-delivery-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 1px dashed #a7f3d0;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 1rem;
+  font-size: 0.84rem;
+  color: #065f46;
+  line-height: 1.5;
+}
+
+.lucky-delivery-notice i {
+  color: #059669;
+  font-size: 1rem;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Order Review & Summary Sidebar
+   -------------------------------------------------------------------------- */
+.lucky-checkout-sidebar {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.lucky-order-review-card {
+  background: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 24px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 35px -5px rgba(16, 185, 129, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lucky-review-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.lucky-review-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.lucky-review-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.lucky-review-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.lucky-review-item-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lucky-review-item-qty {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+  margin: 0;
+}
+
+.lucky-review-item-total {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #059669;
+  flex-shrink: 0;
+}
+
+/* Cost Breakdown Rows */
+.lucky-co-cost-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid rgba(16, 185, 129, 0.12);
+  padding-top: 1rem;
+}
+
+.lucky-co-cost-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.92rem;
+  color: #475569;
+}
+
+.lucky-co-cost-row span:last-child {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.lucky-co-cost-row .badge-free {
+  color: #059669 !important;
+  font-weight: 700;
+  background: #ecfdf5;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #a7f3d0;
+  font-size: 0.8rem;
+}
+
+.lucky-co-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(16, 185, 129, 0.16);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.lucky-co-total-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #064e3b;
+}
+
+.lucky-co-total-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #065f46 0%, #059669 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Place Order Submit CTA */
+.lucky-place-order-cta-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lucky-place-order-cta-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.48);
+  transform: translateY(-2px);
+}
+
+.lucky-place-order-cta-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* WhatsApp Dispatch Notice */
+.lucky-whatsapp-dispatch-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #059669;
+  font-weight: 600;
+  text-align: center;
+}
+
+.lucky-whatsapp-dispatch-info i {
+  color: #25d366;
+  font-size: 1.05rem;
+}
+
+/* Trust Strip in Sidebar */
+.lucky-checkout-trust-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px dashed rgba(16, 185, 129, 0.2);
+  padding-top: 1rem;
+}
+
+.lucky-trust-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.lucky-trust-badge-item i {
+  color: #10b981;
+  font-size: 0.9rem;
+  width: 16px;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Empty Cart Guard State
+   -------------------------------------------------------------------------- */
+.lucky-checkout-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  max-width: 520px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.08);
+}
+
+.lucky-checkout-empty-icon {
+  font-size: 3rem;
+  color: #10b981;
+  margin-bottom: 1rem;
+}
+
+.lucky-checkout-empty-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0 0 0.5rem 0;
+}
+
+.lucky-checkout-empty-desc {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0 0 1.75rem 0;
+  line-height: 1.5;
+}
+
+.lucky-return-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s ease;
+}
+
+.lucky-return-cart-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .lucky-checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lucky-checkout-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .lucky-checkout-heading {
+    font-size: 1.8rem;
+  }
+  .lucky-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .lucky-co-form-group.span-2 {
+    grid-column: span 1;
+  }
+  .lucky-checkout-card,
+  .lucky-order-review-card {
+    padding: 1.25rem;
+  }
+}
