@@ -209,15 +209,7 @@ function DNavbar() {
             <div className="lucky-admin-avatar">
               {adminUser.initial}
             </div>
-            <div className="lucky-admin-info">
-              <div className="lucky-admin-name" title={adminUser.name}>
-                {adminUser.name}
-              </div>
-              <div className="lucky-admin-role">
-                <span className="lucky-status-dot"></span>
-                <span>Depot Manager</span>
-              </div>
-            </div>
+
           </div>
 
           <div className="lucky-sidebar-footer-actions">
