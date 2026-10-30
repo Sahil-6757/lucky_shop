@@ -205,25 +205,10 @@ function DNavbar() {
         {/* Sidebar Footer */}
         <div className="lucky-sidebar-footer">
           {/* Admin Identity Card */}
-          <div className="lucky-admin-profile-card">
-            <div className="lucky-admin-avatar">
-              {adminUser.initial}
-            </div>
 
-          </div>
 
           <div className="lucky-sidebar-footer-actions">
-            <Link
-              to="/"
-              className="lucky-sidebar-footer-link"
-              title="View Live Customer Storefront"
-            >
-              <span>
-                <i className="fa-solid fa-store me-2"></i>
-                Live Storefront
-              </span>
-              <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: "0.75rem" }}></i>
-            </Link>
+
 
             <button
               type="button"

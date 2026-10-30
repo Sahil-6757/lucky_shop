@@ -6,17 +6,18 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const multer = require("multer");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 app.use(express.static("uploads"));
 
-const db_URL = process.env.MONGODB_URL;
+
 
 
 // Mongoose connection starts
 async function main() {
   await mongoose.connect(
-    "mongodb+srv://arbaz151033:Arbazkhan%406757@cluster.dapmmwg.mongodb.net/Lucky_Shop?retryWrites=true&w=majority&appName=clusternp"
+    process.env.MONGODB_URL
   );
   console.log("MongoDB Connected");
 }
@@ -158,7 +159,6 @@ app.use(bodyparser.json());
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "http://localhost:5173",
   "https://luckyshop.blogbeast.in",
 ];
 
@@ -199,9 +199,9 @@ app.post("/login", async (req, res) => {
   let result = await User.find(req.body);
   let admin = await Admin.find(req.body);
   if (result.length > 0) {
-    res.json({ message: "login Success", user: result });
+    res.cookie("token", jwt.sign({ id: result[0]._id }, process.env.JWT_SECRET, { expiresIn: "1h" })).json({ message: "login Success", user: result });
   } else if (admin.length > 0) {
-    res.json({ message: "Admin login Success" });
+    res.cookie("token", jwt.sign({ id: admin[0]._id }, process.env.JWT_SECRET, { expiresIn: "1h" })).json({ message: "Admin login Success" });
   } else {
     res.json({ message: "login Failed" });
   }
